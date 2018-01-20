@@ -1,0 +1,44 @@
+\BOOKMARK [0][-]{bm:Title.0}{Title Page}{}% 1
+\BOOKMARK [0][-]{bm:Title.0}{Title Page}{}% 2
+\BOOKMARK [0][-]{bm:Abstract.0}{Abstract}{}% 3
+\BOOKMARK [0][-]{bm:Acknowledge.0}{Acknowledgements}{}% 4
+\BOOKMARK [0][-]{section*.1}{Table of contents}{}% 5
+\BOOKMARK [0][-]{section*.3}{List of figures}{}% 6
+\BOOKMARK [0][-]{section*.5}{List of tables}{}% 7
+\BOOKMARK [0][-]{chapter.1}{1 Introduction}{}% 8
+\BOOKMARK [1][-]{section.1.1}{1.1 Background and Motivation}{chapter.1}% 9
+\BOOKMARK [1][-]{section.1.2}{1.2 Organization of the thesis}{chapter.1}% 10
+\BOOKMARK [0][-]{chapter.2}{2 Related Work}{}% 11
+\BOOKMARK [1][-]{section.2.1}{2.1 Niching Method}{chapter.2}% 12
+\BOOKMARK [2][-]{subsection.2.1.1}{2.1.1 Clearing Niching Method}{section.2.1}% 13
+\BOOKMARK [2][-]{subsection.2.1.2}{2.1.2 Sharing Niching Methods}{section.2.1}% 14
+\BOOKMARK [2][-]{subsection.2.1.3}{2.1.3 Clearing v.s. Sharing method}{section.2.1}% 15
+\BOOKMARK [1][-]{section.2.2}{2.2 DE with niching method}{chapter.2}% 16
+\BOOKMARK [2][-]{subsection.2.2.1}{2.2.1 Adaptive population DE by niching}{section.2.2}% 17
+\BOOKMARK [2][-]{subsection.2.2.2}{2.2.2 Crowding DE for multiple optimal function}{section.2.2}% 18
+\BOOKMARK [1][-]{section.2.3}{2.3 Differential Evolution}{chapter.2}% 19
+\BOOKMARK [1][-]{section.2.4}{2.4 DE with self-adaptive control parameters}{chapter.2}% 20
+\BOOKMARK [2][-]{subsection.2.4.1}{2.4.1 Self-adaptive parameter\(SDE\)}{section.2.4}% 21
+\BOOKMARK [2][-]{subsection.2.4.2}{2.4.2 Self-adapting parameter\(jDE\)}{section.2.4}% 22
+\BOOKMARK [0][-]{chapter.3}{3 Adaptive Niching DE with Boltzmann Scheme}{}% 23
+\BOOKMARK [1][-]{section.3.1}{3.1 Niching Boltzmann DE}{chapter.3}% 24
+\BOOKMARK [2][-]{subsection.3.1.1}{3.1.1 Niching mutation strategy}{section.3.1}% 25
+\BOOKMARK [2][-]{subsection.3.1.2}{3.1.2 Balance searching}{section.3.1}% 26
+\BOOKMARK [2][-]{subsection.3.1.3}{3.1.3 The Exploitation probability Erg\(ni\)}{section.3.1}% 27
+\BOOKMARK [2][-]{subsection.3.1.4}{3.1.4 The Exploitation probability Eig\(ni\)}{section.3.1}% 28
+\BOOKMARK [1][-]{section.3.2}{3.2 Simulations on Niching Boltzmann DE}{chapter.3}% 29
+\BOOKMARK [2][-]{subsection.3.2.1}{3.2.1 Results Quality}{section.3.2}% 30
+\BOOKMARK [2][-]{subsection.3.2.2}{3.2.2 Converge Curves}{section.3.2}% 31
+\BOOKMARK [2][-]{subsection.3.2.3}{3.2.3 Population Sensitivity}{section.3.2}% 32
+\BOOKMARK [0][-]{chapter.4}{4 Two-layered Self-adapting DE with Clearing mutation strategy}{}% 33
+\BOOKMARK [1][-]{section.4.1}{4.1 Two layered DE with parameter control}{chapter.4}% 34
+\BOOKMARK [2][-]{subsection.4.1.1}{4.1.1 The Evolution of niching DE}{section.4.1}% 35
+\BOOKMARK [2][-]{subsection.4.1.2}{4.1.2 The Evolution of control parameters}{section.4.1}% 36
+\BOOKMARK [1][-]{section.4.2}{4.2 Simulations on Niching Two-layered DE}{chapter.4}% 37
+\BOOKMARK [2][-]{subsection.4.2.1}{4.2.1 Average optimal results}{section.4.2}% 38
+\BOOKMARK [2][-]{subsection.4.2.2}{4.2.2 Success rate}{section.4.2}% 39
+\BOOKMARK [2][-]{subsection.4.2.3}{4.2.3 Converge curves}{section.4.2}% 40
+\BOOKMARK [0][-]{chapter.5}{5 Conclusions}{}% 41
+\BOOKMARK [0][-]{section*.29}{Appendices}{}% 42
+\BOOKMARK [0][-]{Appendix.1.A}{Appendix A. Benchmark Functions}{}% 43
+\BOOKMARK [0][-]{section*.31}{Bibliography}{}% 44

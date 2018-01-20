@@ -1,0 +1,8 @@
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {4.1}{\ignorespaces Mouse Piriform Cortex Dataset\relax }}{27}{table.caption.13}
+\contentsline {table}{\numberline {4.2}{\ignorespaces Rand F-scores on Mouse Piriform Cortex Dataset\cite {vd2d3d}\relax }}{29}{table.caption.14}
+\contentsline {table}{\numberline {4.3}{\ignorespaces Object boundary detection evaluation comparison on PASCAL VOC Contour Dataset\cite {cedn}. Our proposed 3-stage cascaded fully convolutional network achieves the new state-of-the-art on this benchmark, with a significant improvement (around 2\% over the second)).\relax }}{34}{table.caption.17}
+\addvspace {10\p@ }

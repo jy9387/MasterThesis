@@ -1,0 +1,17 @@
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces An illustration of feature extraction.\relax }}{6}{figure.caption.7}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces An illustration of SVM for choosing the hypeplane that maximizes the margin in 2D-space.\relax }}{7}{figure.caption.8}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces An illustration of k-Nearest Neighbor.\relax }}{9}{figure.caption.9}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces An illustration of Decision trees.\relax }}{10}{figure.caption.10}
+\contentsline {figure}{\numberline {2.5}{\ignorespaces An illustration of simple Neural Netowrks.\relax }}{11}{figure.caption.11}
+\contentsline {figure}{\numberline {2.6}{\ignorespaces An illustration of Recurrent Neural Network.\relax }}{12}{figure.caption.12}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces The instance of Stacked Residual Bi-LSTM with Word Weight Networks. The left line part is the word weight training module and the right part is the ResNets based module.\relax }}{16}{figure.caption.13}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces An illustration of Bidirectional LSTM network.\relax }}{17}{figure.caption.14}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces The left image is a residual block in Residual Networks. The right image is an illustration of Residual Networks.\relax }}{19}{figure.caption.15}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Stacked structure of Bidirectional LSTM network.\relax }}{20}{figure.caption.16}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Work flow of Stacked Residual Bi-LSTM with Word Weight Networks.\relax }}{21}{figure.caption.17}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces The (a) shows the batch training loss on SST-1 with our method and standard stacked Bi-LSTM. The (b) shows the test accuracy on SST-1 compared with two methods.\relax }}{29}{figure.caption.24}
+\addvspace {10\p@ }

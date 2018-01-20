@@ -1,0 +1,1670 @@
+\documentclass[senior]{IPSstyle}
+
+% ------- Fill in these fields for the preliminary pages --------
+%
+% For Senior and honors this is the year and month that you submit the thesis
+% For Masters and PhD, this is your graduation date
+  \Year{2014}
+  \Month{January 10}
+  \Author{44121591-3: LUO,Yongxin}
+
+
+% If you have a long title, split it between two lines using the \\ command.
+% A multiple line title should be an "inverted pyramid" with the top line(s)
+% longer than the bottom.
+  \Title{Enhanced Differential Evolution by Clearing Niching Method}
+
+  \Advisor{Professor Furuzuki}
+
+  % choose options for [] as required from the list
+% in the Reference Guide
+%\usepackage{amsmath}
+\usepackage{amssymb,amsmath}
+%\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathptmx}       % selects Times Roman as basic font
+\usepackage{helvet}         % selects Helvetica as sans-serif font
+\usepackage{courier}        % selects Courier as typewriter font
+\usepackage{type1cm}        % activate if the above 3 fonts are
+                            % not available on your system
+%
+\usepackage{makeidx}         % allows index generation
+\usepackage{graphicx}        % standard LaTeX graphics tool
+                             % when including figure files
+\usepackage{multicol}        % used for the two-column index
+\usepackage{multirow}
+\usepackage[bottom]{footmisc}% places footnotes at page bottom
+ \renewcommand{\labelitemi}{{\LARGE\textbullet}}
+% see the list of further useful packages
+% in the Reference Guide
+
+%\makeindex             % used for the subject index
+                       % please use the style svind.ist with
+                       % your makeindex program
+\usepackage{mathrsfs}
+\usepackage{amssymb,amsmath}
+\usepackage{amsfonts}
+\usepackage{color}
+\usepackage{CJKutf8}
+
+\usepackage{mathptmx}
+\usepackage{listings}
+\usepackage{algorithm,algorithmicx,algpseudocode}
+
+% Process only the files in backets. ie title page and chapter 1 {title, ch1}
+%     Be sure to remove the % before \includeonly to use this feature.
+
+%\includeonly{title,ch1}
+
+%%%%%%%%%%%
+% Type of document.
+% Keep only one of the next four lines.
+
+
+
+%\renewcommand{\type}{Dissertation Proposal}
+%\renewcommand{\type}{Dissertation}
+%\renewcommand{\type}{Thesis Proposal}
+%\renewcommand{\type}{Thesis}
+
+%%%%%%%%%%%
+% Type of degree.
+% Keep only one of the next two lines.
+
+%\renewcommand{\degree}{DOCTOR OF PHILOSOPHY}    % For dissertation
+%\renewcommand{\degree}{MASTER OF SCIENCE}   % For thesis
+
+%%%%%%%%%%%
+% Department
+% Change the department if not in ELEN
+
+%\renewcommand{\major}{Electrical Engineering}   % Change if you are not in ELEN
+
+  \Abstract{
+Handing multimodal functions in continuous space is a very important and challenging task in evolutionary computation community, especially when most of the real-world applications exhibit highly multimodal landscapes with very high dimensions. To search global optimal of upon functions, we use Differential Evolution algorithm. While differential evolution (DE), is a simple yet powerful population-based stochastic search technique, which is an efficient and effective global optimizer in the continuous search domain. While DE still face the problem of premature convergence during the iterations.
+
+Motivated by the dynamics and the proximity characteristics of Differential Evolution's mutation strategies tending to distribute the individuals of the population to the vicinity of the problem's minima, we propose a new Differential Evolution mutation strategy which combine niching method with Boltzmann scheme. The niching method is presented to avoid the premature phenomenon in Differential Evolution, aim to maintain the diversity of evolution in each generation, which prevent the convergence to local optima. The clearing procedure is one of a niching method inspired by the sharing niching method: the sharing of limited resources within subpopulation of individuals characterized by some similarities. Instead of evenly sharing the available resources among the individuals of a subpopulation, the clearing procedure supplies these resources only to the best individuals of each subpopulation. By finding the efficient individuals (numbers of winners in figure 1) of niches in each generation, we may speed up the convergence. The clearing is naturally adapted to elitist strategies, which can significantly improve the performance of evolution.
+
+
+The proposed modification is tested on commonly used benchmark problems for unconstrained optimization. Experimental results with some state-of-art algorithms indicate that the proposed mutation strategy is competitive and very promising. It improves the efficiency and robustness of the algorithm and can be applied to any variant of a Differential Evolution algorithm.
+
+}
+
+
+
+\Keywords{
+Evolution algorithm, parameter control, mutation strategy, niching method, balance searching
+}
+
+\Acknowledgments{
+   It is quite memorable time I spend in here, Furuzuki Lab, Waseda University. I dearly gratitude our professor, Jinglu HU, who devoting himself to supervising us. Living and studying in foreign country for the first time is not an easy task to fulfill, Professor HU always give helpful and appropriate suggestions on how to handle those problems with his breadth of mind.
+
+   I am very thankful to Sheng Huang, advance research based on her Matlab source codes save me a lot of time.
+
+   I would also like thank all others who have provided their valuable suggestions and comments to this research.
+
+   Thanks all my friends and families for your great support and companion, this paper can not be finished without your patient to comfort me.
+}
+
+
+\begin{document}
+
+ % This command makes the formal preliminary pages.
+ % You can comment it out during the drafting process if you want to save paper.
+ \makepreliminarypages
+
+ \singlespace
+
+ % Start page counting in roman numerals
+ \frontmatter
+
+ % Make the table of contents.
+\tableofcontents
+
+\listoffigures
+
+\listoftables
+
+ \mainmatter
+ % Start regular page counting at page 1
+
+ \clearemptydoublepage
+
+ \setlength{\baselineskip}{20.4pt} % \doublespace
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Chapter 1
+\chapter{Introduction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Chapter 1
+%=============================================================================
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Differential evolution (DE), is a well-known simple yet powerful population-based stochastic search technique, which is an efficient and effective global optimizer in the continuous searching domain. Since it has presented good convergence and easy modeling features in many real-world cases, DE has been widely studied on its performance improvements and its applications to complicated problems in recent years.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Background and motivation}
+
+
+Since convergence speed is also highly relevant with premature problems, we need a method to control the speed of convergence and realize a balance searching procedure.  When searching for a global optima in difficult situation, a reasonable procedure is: at first searching area as large as possible, as iteration goes on the searching should be as detail as it can. Boltzmann Scheme is proposed to realize this procedure and combine with clearing niching method, we adapt the Boltzmann method in mutation strategy.
+
+Motivated by the dynamics and the proximity characteristics of Differential Evolution's mutation strategies tending to distribute the individuals of the population to the vicinity of the problem's minima, we propose a new Differential Evolution mutation strategy which combine niching method with Boltzmann scheme.
+
+The niching method is presented to avoid the premature phenomenon in Differential Evolution, aim to maintain the diversity of evolution in each generation, which prevent the convergence to local optima.A niche is commonly referred to an optimum of the domain, the fitness representing the resources of that niche, this definition is brought from biology and first used in genetic algorithm (GA). The niching method is presented to avoid the premature phenomenon in DE, aim to maintain the diversity of evolution in each generation, which prevent the convergence to local optima. The clearing procedure proposed by Petrowski.A is one of a niching method inspired by the sharing niching method: the sharing of limited resources within sub-populations of individuals characterized by some similarities.
+
+Clearing niching has been constantly used to keep balance between several subpopulation, a clearing procedure in estimation of distribution algorithm (EDA) is proposed to cluster niches (subpopulation) then selectively choose dominate individuals in order to maintain diversity. Not only in EDA, Michael G inadopt niching method in DE mutation strategy for multimodal optimization problems.
+
+The clearing procedure is one of a niching method inspired by the sharing niching method: the sharing of limited resources within subpopulations of individuals characterized by some similarities. Instead of evenly sharing the available resources among the individuals of a subpopulation, the clearing procedure supplies these resources only to the best individuals of each subpopulation. By finding the efficient individuals of niches in each generation, we may speed up the convergence. The clearing is naturally adapted to elitist strategies, which can significantly improve the performance of evolution.
+
+Although DE is a stochastic population based evolution algorithm, appropriate control parameters\textemdash amplification factor F and crossover rate CR, will bring good evolution efficiency and result in better solution. Therefore, choosing suitable control parameter values is, commonly, a problem dependent task. In the conventional DE algorithm, the control parameters F and CR are constants during the evolution, while the setting for control parameters depends on problems. The trail-error method applied in tuning control parameters requires multiple optimization runs, which is obviously time consuming. Moreover, during the evolution of iteration, different population coupled with different parameter settings may be required in order to achieve the best performance, especially dealing with multimodal functions.
+
+Therefore, researchers have developed several techniques to avoid manual tuning of the control parameters. For example, Janex Brest in summarizes a Self-adaptive DE algorithm with self-adaptive control parameters, in which each individual of generation is extended with parameters F and CR. Most of existing methods for parameter control concentrate on the probability to choose random parameters. But Qin $et\: al.$ proposed a Strategy adaptation DE (SaDE) algorithm, in the SaDE both mutation strategies and control parameters can be gradually self-adapted according to their previous experiences of generating promising solutions.
+
+On the other hand, although self-learning DE eliminates time for finding appropriate control parameters, it still faces the problem of premature convergence during evolution. A simple yet popular explanation for the occurrence of premature convergence is the loss of diversity, which also influences the system stability.
+
+In the literature, a self-adaptive DE known as JADE was proposed by J. Zhang in  which implemented a mutation strategy ``DE/current-to-$p$-best'' diversifies the population but guarantee the fast convergence property at the same time. Similarly, Ref. describes a dynamic self-adapting parameter F and CR called jDE, combined with a multi-population method to increase diversity and stabilize the searching procedure.
+
+In order to eliminate the time consuming task in fine-tuning control parameters in DE, and to avoid adding too many parameters, we propose a two-layered DE (TLDE) with self-adaptive control parameters based on the previous performance. The TLDE composes of two DE layers: a top DE layer and a bottom DE layer. The top DE layer is a simplified DE without crossover operation, for control parameter adaptation. The bottom DE layer is a doubled, parallel DE with two set control parameters, for the basic evolution task.
+
+There is a natural assumption that in a DE, better control parameters are more likely to generate better offspring to survive, which will also change with different regions during iteration process. However, due to the stochastic characteristics of DE, it is hard to evaluate and then select better control parameters in only one generation. Differ from other greedy strategies which self-adapting parameters by every generation, in this paper a new scheme is introduced, which is designed to evaluate and select good control parameters over a learning period consisting of $L_p$ generations.
+
+%=============================================================================
+
+
+Followed the idea to combine parameter control adaptation and diversity maintenance, in this paper we introduce a clearing niching methodto improve the performance of the TLDE. For the purpose of construct an effective and robust DE for the solution of different types of optimization problems, we employ a niching mutation strategy to enhance the TLDE. A complete system is formed with the combination of two-layer learning parameters.
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Organization of the thesis}
+The remainder of this paper is structured as follows: Section \uppercase\expandafter{\romannumeral2}  briefly describes conventional differential evolution algorithm and clearing niching method we refer to. In Section \uppercase\expandafter{\romannumeral3}, we describe the proposed method, which describe the structure and mechanism of TLDE enhanced with clearing niching method. To evaluate the proposed algorithm and testify its effectiveness, Section \uppercase\expandafter{\romannumeral4} runs several simulations. The paper ends in Section\uppercase\expandafter{\romannumeral5} with a discussion on contributions of this work.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Chapter 2
+\chapter{Related Algorithms} \label{ch2}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Chapter 2
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Differential Evolution}
+DE is a population based iterative optimization algorithm. Offspring are generated by perturbing the solutions with a scaled difference of selected population vectors, and update population by greedy strategy remains better individuals.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Similar to Genetic Algorithms, DE process mutation, crossover and selection. Although it use the same concept of fitness in the selection, it devises its own crossover and mutation in the real continuous space, while GA is optimization for discontinuous space. \\
+
+%=============================================================================
+$1) \: Initialization$
+
+Classic DE begins by randomly initializing a population of $NP$, $D$-dimensional vectors $X_i^g$,$i=1,2,\dots,NP$, which represent the candidate solutions and aim to achieve the global optimization of domain during evolution.
+
+We denote generations $g\in \{0,1,\dots G\}$ in DE and the $i^{th}$ vector of the population at the current generation as%
+\begin{equation}
+X_i^g=[X_{i,2}^g,X_{i,2}^g,\dots X_{i,D}^g]
+\label{eq1}
+\end{equation}
+where $i\in [1,N]$. Population size $NP$ should be at least four and unchanged during the searching process. The initial population is $X_i^0=[X_{i,1}^0,X_{i,2}^0,\dots,X_{i,D}^0]$ within the search space constrained by the minimum and maximum bounds, which varies from different situations: $X_{i,d}^{min},X_{i,d}^{max}$ where $1\leq d \leq D$. Hence the $d^{th}$ dimension of $i^{th}$ vector will be initialized as
+\begin{equation}
+ X_{i,d}^0= X_{i,d}^{min}+rand_{i,d}(0,1)\times( X_{i,d}^{max} X_{i,d}^{min})
+ \end{equation}
+where $rand_{i,d}$ is an independent value uniformly distributed between the range [0,1], in each dimension of the $i^{th}$ vector. During the evolution process, DE employs mutation, crossover and selection operations, which are described as follow subsections.\\
+
+%=============================================================================
+$2) \:Mutation$
+
+After initialization procedure, DE creates a mutation vector $V_i^g$ by doing recombination with target vector $X_i^g$ for compare and evolution. In other words, differential mutation adds a scaled difference of randomly sampled vectors to a third vector. There are five mutation strategies are widely used:
+\begin{equation}
+``DE/rand/1":V_i^g=X_{r0}^g+F\times (X_{r1}^g-X_{r2}^g)
+\end{equation}
+\begin{equation}
+``DE/rand/2":V_i^g=X_{r0}^g+F\times (X_{r1}^g-X_{r2}^g)+F\times (X_{r3}^g-X_{r4}^g)
+\end{equation}
+\begin{equation}
+``DE/best/1":V_i^g=X_{best}^g+F\times (X_{r1}^g-X_{r2}^g)
+\end{equation}
+\begin{equation}
+``DE/best/2":V_i^g=X_{best}^g+F\times (X_{r1}^g-X_{r2}^g)+F\times (X_{r3}^g-X_{r4}^g)
+\end{equation}
+\begin{equation}
+``DE/target-to-best/2":V_i^g=X_i^g+F\times (X_{best}^g-X_i^g)+F\times (X_{r1}^g-X_{r2}^g)
+\end{equation}
+where $r_0$, $r_1$, $r_2$, $r_3$, $r_4$ are randomly chosen vector index from $N$ that is different from the target vector index, $i$. The scale factor, $F$ is a positive real number that controls the amplification of the randomly chosen differential vectors. $X_{best}^g$ is the best individual vector correspond to the best fitness in current generation.
+
+It is worth to mention that the mutation strategies are named in the format $DE/x/y/z$, where DE stands for differential evolution obviously, $x$ denotes the vectors to be perturbed, $y$ represents the number of difference vectors considered for perturbation of $x$, and $z$ is the crossover type that used. Different strategies shows different characteristics when operating optimization:
+
+Strategies relying on the best solution at present such as ``DE/best/1/bin'', ``DE/best/2/bin'' and ``DE/rand-to-best/1/bin'', always appeal time saving character in convergence, which also good at solving unimodal problems. However, they are more likely to premature convergence and limit to local optimal in complex multimodal problems.
+
+Strategy with randomly choosing target vectors ``DE/rand/1/bin'' shows slower convergence than former mentioned ``best'' strategies, but bears stronger exploration capability. Therefore, for solving multimodal problems referred in this paper, we use this mutation strategy.
+
+The ``DE/current-to-rand/1'' mutation strategy is rotation invariant. This mutation strategy is always used in multiobjective optimization problems.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=11cm]{DEmutation}
+\caption{Mutation of conventional DE} \label{fig1}
+\end{figure}
+
+For each target vector $X_i^g$, a mutation vector $V_i^g$ is generated by the basic "rand/1/bin" strategy as shown in figure \ref{fig1}:%
+\begin{equation}
+V_i^g=X_{r_1}^g+F(X_{r_2}^g-X_{r_3}^g),\: r_1\neq r_2\neq r_3\neq i
+\label{eq2}
+\end{equation}
+where $r_i$ is randomly chosen integers from $[1,NP]$. ``Amplification factor'' $F$ is one of key parameters in DE which affects step vector $(X_{r_2}^g-X_{r_3}^g)$.\\
+
+%=============================================================================
+$3) \:Crossover$
+
+To complement the differential mutation search strategy, DE also employs uniform crossover to increase the potential diversity of the population. There are two kinds of crossover scheme\textemdash exponential and binomial. In binomial crossover, which is usually used, DE cross each target vector $X_i^g$ with mutation vector $V_i^g$ to form a trail vector $U_i^g$, which determined as:
+\begin{equation}
+U_{i,j}^g=\left\{%
+\begin{array}{ll}V_{i,j}^g \quad \text{if}\:rand_{i,j} (0,1)\leq CR_{i,j} \:or \: j=j_{rand}\\
+X_{i,j}^g \quad \text{otherwise}.
+\end{array}
+\label{eq3}
+\right.
+\end{equation}
+$j=1,2,\dots,D$ and $rand_{i,j}$ is the $j^th$ evaluation of a uniform random number generator with outcome $\in[0,1]$. ``Crossover rate'' CR is another key parameter set as constant in conventional DE. CR is a user-defined value just like F, controls the probability of trail vector copied from mutation vector. $j_{rand}$ is a randomly generated integer from the range [1,D] to ensure that the trail vector does not duplicate $X_i^g$ in every dimension. To determine which source contributed the trail vector $U_i^g$ binomial crossover compare CR with a uniform random number $rand_{i,d}(0,1)$ for each dimension of mutation vector. If the random numbers is less than or equal to CR, the trail vector is inherited from the mutation vector $V_i^g$, otherwise, it is copied from the target vector $X_i^g$. (shown in figure\ref{fig2})
+\begin{figure}[H]
+\centering
+\includegraphics[width=11cm]{DEcrossover}
+\caption{Crossover of conventional DE} \label{fig2}
+\end{figure}
+
+In exponential crossover operation, the trail vector $U_i^g$ is inherited from mutation vector starting from the randomly chosen index $j_{rand}$. Then the trail vector continued to copy from mutation vector till $CR\ge rand(0,1)$. Then the remaining trail vectors $U_i^g$ are copied from the target vector $X_i^g$. In this paper, we only use binomial crossover which is widely used.\\
+
+%=============================================================================
+
+$4)\: Selection$
+
+By completing to the fitness values, selection operation determines whether the target vector or the trail vector survives to the next generation. Choosing the survive one between target vector $X_i^g$ and trail vector $U_i^g$, greedy criterion is used as follow equation%
+\begin{equation}
+X_i^{g+1}=\left\{%
+\begin{array}{ll}U_i^g \quad if \: f(U_i^g)<f(X_i^G)\\
+X_i^g \quad otherwise.
+\end{array}
+\label{eq4}
+\right.
+\end{equation}
+where $f(X_i)$ is the function to be minimized. Keep the population size as constant over subsequent generation, the object function value of trail vector $f(U_i^g)$ is compared to the corresponding value of target vector $f(X_i^g)$. If the trail vector $U_i^g$ has an equal or lower object function than that of its target vector $X_i^g$, it replaces the target corresponding target vector and survives in the next generation; otherwise, the target vector remain its place in the population.
+
+The process of mutation, crossover and selection is repeated in every individual in each generation until the optimum is located, or a pre-specified termination criterion is satisfied and the individual with the best fitness value is reported as the solution (shown in figure \ref{fig3}).
+\begin{figure}[H]
+\centering
+\includegraphics[width=11cm]{DEbasic}
+\caption{Flowchart of Conventional DE} \label{fig3}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Niching Method}
+
+Niching methods is designed for improving the procedure of locating the optimum of multimodal functions. It aims to maintaining population diversity and permit the genetic algorithm searching multiple optimums at the same time. A niche is a concept from biology, can be treat as a subspace in the environment that can support different types of life. When searching global optimum during evolution, different individuals with fitness value can be viewed as different species.
+
+A specie is defined as a group of individuals with similar biological features, different species has low probability to cultivate each other, one specie classified as one niche. For each niche,  the physical resources are finite and should be shared by the individuals of that niche. By analogy, niching methods tend to achieve a natural emergence of niches and species in the searching space. The similarity and difference between each niche can be divided by distance of individuals, and the way of calculating the distance also shows different ways to cluster niches.
+
+The clearing, sharing, and crowding method is probably the best known and most widely used among niching techniques. In the following subsections, we will introduce these methods and discuss the reason we only adopt clearing niching method in this paper.
+
+\subsection{Clearing Niching Method}
+
+Niching method is designed to overcome the premature convergence problem due to the loss of diversity. The mechanism of maintain diversity in niching method is keeping several sub-populations within search space during iteration. Since niching method proposed from $1995$, various niching techniques derived from it. This paper gives a short introduce of clearing niching method which is nearly as others.\\
+
+$1)\:Principles$%
+
+A clearing niche is characterized by a limited amount of resources available for living individuals which share commonalities. Instead of sharing the available resources among all individuals of a subpopulation, which is widely used, the clearing niching means only few best members in each subpopulation possess the limited resources. Each subpopulation contains a dominant individual which has the best fitness. The dissimilarity of the individuals with the dominate one is less than a given threshold, which is the clearing radius $\delta$.
+
+The original clearing algorithm preserves the individual with best fitness, and resets other individuals of that subpopulation to zero. Hence, the clearing niching gives the whole resource of a niche to a single individual, which is called the winner. This winner takes all the resources of the subpopulation instead of sharing with each other.
+
+Moreover, the life coexistence is widely acknowledged, for a given niche, the numbers of winners rarely to be one. Several winners with best fitness coexist in the same subpopulation and kick out those losers, who will fail to generate offspring and stop in the middle of evolution. The capacity of a niche is defined as the maximum number of winners that this niche can accept. Notice that if a capacity greater than 1 is chosen, then the set of winners for a given population is not generally unique.
+
+An elitist strategy memorizes the best individuals of a population found before the application of genetic operators and inherit them to the next generation. \\
+
+%=============================================================================
+$2)\:Procedure$
+
+At first, sort population NP according to the fitness of the individuals by decreasing order, for choosing the winners. The whole population is ranked for the sake of clarity in this version of the algorithm. A more optimized algorithm would sort only the dominant individuals, which we will referred to in the next chapter. Then, calculate the distance between two individuals i and j from the population. To mention that, this distance can be Euclidean distance, hamming distance or any other distance, its only a measurement to test the intimacy between each other, and varies from different occasions. And then, choose the winners follow the order from best fitness, and reset those individuals who are too close to the winners. At last return the set of winners with their fitness value.
+
+For better understanding, a brief pseudo code of clearing procedure is presented (Algorithm \ref{algorithm1}). Take population
+$\{X_{1,2,\dots,NP}^g\}$ in $g^{th}$ generation and radius $\delta$ as input, we can get the winner set$\{X_c^g\}$ of this iteration.
+
+\begin{algorithm}
+\renewcommand{\arraystretch}{0.6}
+\caption{Clearing Procedure}
+\begin{algorithmic}[1]
+\Require clearing radius $\delta$, population $\{X_{1,2,\dots,NP}^g\}$
+\Ensure winners set $\{X_c^g\}$, number of winners $n$
+\Function {Clearing}{$\delta$, $X_i^G$}
+\State Sort fitness $f(X_{1,2,\dots,NP}^g)$
+\For{$i=1\to NP$}
+    \If{fitness $f(X_i^g)> 0$}
+    \State $\{X_c^g\} \gets X_i^g$
+    \State /*\textbf{Save the winner} of this niche*/
+    \For{$j=i+1 \to NP$}
+        \If{distance $(X_i^G,X_j^g)\leq \delta$}
+            \State fitness $f(X_j^g) \gets 0$
+            \State /*\textbf{Clear others} of this niche*/
+        \EndIf
+    \EndFor
+    \EndIf
+\EndFor
+\EndFunction
+\end{algorithmic}
+\label{algorithm1}
+\end{algorithm}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Sharing Niching Method}
+
+Petrwoski's clearing method, Goldberg's sharing function approach are the most popular approaches that have been proposed by the evolution field. The sharing method is also widely used niching method. We mention the sharing niching method here to compare with clearing, that these two methods can realize the same effect, while in cases of this paper, clearing method is preferred.
+
+ From a similar starting point that, the expected number of offspring of an individual $i$ is proportional to fitness which is shared by other individuals in a certain niche. The equation of the operator will be described as:
+
+\begin{equation}
+\hat{f_i^g}=\frac{f_i^g}{\sum\limits_{j=1}^n sh(d_{ij})}
+\end{equation}
+
+where sharing function is calculated by:
+
+\begin{equation}
+sh(d)=\left\{
+\begin{array}{ll}
+1-(\frac{d}{\sigma_{share}})^\alpha \quad \text{if} d< \sigma_{share} \\
+0 \quad \text{otherwise}
+\end{array}
+\right.
+\end{equation}
+
+where $d_{ij}$ is the distance between individual i and j, $\sigma_{share}$ represents the radius of niche, and $\alpha$ always set to 1 as a constant value.
+
+Consider the hypothesis where all the individuals of a subpopulation x have a fitness almost equal to a value $f(x)$, which represent the niche and are at a distance very close to each other. This particular case typically occurs at the steady state when subpopulation are located on the highest maxima of the function. Also in high dimension space, the Euclidean distance is close to zero. Assume that individual i belongs to subpopulation x, a new expression of $\hat{f}$ is obtained:
+
+\begin{equation}
+\hat{f_i^g}\approx \frac{f_i}{N_x^g}\approx \frac{f(x)}{N_x^g}
+\end{equation}
+where $N_x^g$ is the number of individuals in the $x$-th niche at the $g$-th generation. The expected number of offspring of an individual i at generation g is:
+
+\begin{equation}
+E({n_i^{sharing}}^g)=n\frac{\hat{f}_i^g}{\sum\limits_{j=1}i \hat{f}_j^g}\approx \frac{n}{N_x^g}\frac{f(x)}{\sum\limits_{y=1}^cf_y}
+\end{equation}
+
+The expected number of individuals E that belong to subpopulation x is obtained by multiplying equation upon by $N_x^g$:
+
+\begin{equation}
+E({n_x^{sharing}}^g)\approx n \frac{f(x)}{\sum\limits_{y=1}^cf_y}\approx E({n_i^{sharing}}^g)\times N_x^g
+\end{equation}
+With the sharing method, if a subpopulation contains more individuals than expected due to the selection noise at a given generation, each of them will have offspring which is expected less than 1 in order to restore the equilibrium. While in the stochastic universal selection procedure, an individual of such a subpopulation could not have offspring. In this case, the losers of the subpopulation will be disappeared. This phenomenon can be countered with a large enough number of individuals for each desirable subpopulation when the survival probability is high, which implies an adequate dimensioning of the population.
+
+\subsection{Discussion}
+
+The clearing niching associated with an stochastic selection procedure ensure the number of offspring of the winners of a subpopulation, which is always greater or equal to the fitness of others. Consequently this subpopulation survives with certainty, and the clearing method gives a lower bound to the population size wihich is smaller than the one required by the sharing method.nTherefore, the clearing niching method is more efficient we choose to use in this paper, instead of sharing method, follows the properties below:
+
+1. The complexity of the clearing procedure is lower than that of the sharing method.
+
+2. The clearing is directly compatible with elitist strategies, which can be used to both unimodal and multimodal functions.
+
+3. The behavior of the genetic algorithm with the clearing procedure can be controlled between that of the maximum clearing and that without clearing by setting the niche capacity to an appropriate value.
+
+4. The genetic drift due to the selection noise is significantly reduced with stochastic universal selection, which used by DE, and the populations may be far smaller than those required by the sharing method.
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Chapter 3
+\chapter{Related Work} \label{ch3}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Chapter 3
+DE is a novel population based on intelligent optimization algorithm which is easy to use and has the advantages of strong robustness, but its efficiency is limited an probably fall into local optimum because of loss of diversity, slowness of searching speed and premature when approaching the global optimum. Also, its property of sensitive to parameters F and CR has been proved from former researchers. Aim to solve these two problems, we would fist introduce the work of former researchers, and motivated by their method to improve DE, we then introduce our proposed method in the next chapter.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Improve DE with niching method}
+
+Several algorithms have been proposed in the literature of DE, that attempt to optimize real world problems. Niching algorithms usually impose a restrictive reproduction technique which means to maintain the diversity of their populations and converge efficiently. Following two subsections describe two kind of niching methods commonly adapted in DE.
+
+\subsection{Adaptive niching DE for global optimization}
+
+This kind of niching method used to keep population diversity and expand search to accelerate convergence, also with self-adaptive niching radius during the evolution. In the process of niching, the radius will vary with population convergence. While the population is sparse and scatterd, the niche radius should be large enough to maintain the species diversity, while the population is concentrated, the niche radius should be relatively small to ensure the number of niches. Despite the other steps of niching, the radius is defined as follow:
+
+\begin{equation}
+\begin{array}{llll}
+R_{ch}=R_{max}\cdot exp(-\phi\cdot \frac{l-d_{avg}}{l})\\
+R_{max}=R_0\cdot l\\
+d_{avg}=\frac{2}{n(n-1)}\sum\limits_{i=1}^{N-1}\sum\limits_{j=i+1}^Nd(X_i-X_j)\\
+l=sqrt{\sum\limits_{j=1}^n(x_{jmax}-x_{jmin})^2}.
+\end{array}
+\end{equation}
+Where $R_{max}$ is the maximum of radius, $\phi$ is the adjustment parameter, $d_{avg}$ is the average distance between individuals, $R_0$ is the proportion parameter of niching radius, $l$ is the diagonal in N dimensional search space.
+
+A niche eliminating mechanism also involved, merging M optimal individuals together from parent, and descendants to produce the competition population $S$ carrying $N+M$ individuals. The distance between individuals which beyond the competition population is calculate by:
+
+\begin{equation}
+\lvert\lvert X_i-X_k\rvert\rvert=\sqrt{\sum\limits_{j=1}^n(x_{ij}-x_{kj})^2}
+\end{equation}
+where $i=1,2,\dots,N+M-1$, $k=i+1, i+2,\dots, N+M$. From competitions among similar individuals of the competition population that the distance between them in the search space is less than a dissimilarity threshold, the losers fitness is greatly decreased by imposed penalty function and the winners remain unchanged.
+
+This operation not only retains optimal individuals of the parent population which can improve the convergence rate, but also make individuals maintain a certain distance keeping the population diversity. This mechanism is adopted to accelerate convergence speed and avoid similar individuals, which can greatly raise the searching efficiency of algorithm. And the adaptive idea of niching will be borrowed in our proposed method in a different way.
+
+\subsection{Dynamic niching DE for multiple optimal function}
+
+Highly multimodal landscapes with multiple local and global optimal represent common features in real world. To locate and maintain a large number of global solutions, a control parameter adaptation technique and a external dynamic archive. This kind of method aim to locate as many global optima as possible when a multimodal function is obtained. The main idea is to change the target vector in mutation strategy by niching method, which maintain the species varying from different area.
+
+In this case, each individual is evolved by using its nearest neighbor individual and random vector differences in an attempt to keep the individual within the vicinity of an optimum and simultaneously to explore effectively the search space. Given a population NP, at the $g$-th generation, the mutation strategy will evolve each individual $x_g^i$, $i=1,2,\dots,NP$, to generate the mutant individual $v_{g+1}^i$ according to the following equation:
+
+\begin{equation}
+v_{g+1}^i=x_g^{NN_i}+F(x_g^{r_1}-x_g^{r_2})
+\end{equation}
+
+where $x_g^{NN_i}$ is the spatial nearest neighbor of the current individual $x_g^i$, $F>0$ is the mutation factor, and $r_1, r_2$ are randomly chosen indexes ($r_1, r_2\in \{1,2,\dots,NP\}$).
+
+By this kind of recombination, which mainly responsible for the diversity of the population, to improper select the value of populations during evolution and dynamic elite individuals with poor performance. Also, some approaches not only show the robust an stable behavior during evolution, but also reduce the influence of parameters sensitivity in DE.
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Improved DE with self-adaptive control parameters}
+Parameters study has become one of the most significant research on DE, which includes the population size NP, amplification factor F and crossover rate CR. Over past decades, researchers have been investigating ways of improving the ultimate performance of DE algorithm by tuning its control parameters. According to Storn and Price, DE is much more sensitive to the choice of F than CR. Hence, Gamperle et al. reported that choosing the proper control parameters for DE is more difficult than expected.
+
+This section briefly reviews some self-adaptive DE algorithms that using ``DE/rand/1/bin'' mutation strategy, which can combine with the niching method.
+
+\subsection{Self-adaptive parameter(SDE)}
+
+SDE algorithm was first brought out by Salman et al. the control parameters are initialized for each individual and generated through normal distribution.
+
+It works as follows: for each target vector, $x_i^g$ in the $g$-th generation, offspring $x_i^{g+1}$ is created by randomly selecting three individuals from the current population, namely $x_{i_1}^g$, $x_{i_2}^g$ and $x_{i_3}^g$, with $i_1 \neq i_2 \neq i_3 \neq i$, and $i_1, i_2, i_4 \in U(1,2,\dots,s)$, where s is the population size. A random number, r, is then selected with $r\in U(1,2,\dots,N_d)$, where $N_d$ is the number of genes (parameters) of a single chromosome. Then, for all parameters $j=1,2,\dots,N_d$
+\begin{equation}
+x_{i,j}^{g+1}=\left\{
+\begin{array}{ll}
+x_{i_3,j}^g+F_i^g\cdot (x_{i_1,j}^g-x_{i_2,j}^g) \quad \text{if} U(0,1)\leq N(0.5,0.15) \text{or} j=j_{rand}\\
+x_i^g \quad \text{otherwise}
+\end{array}
+\right.
+\end{equation}
+where
+\begin{equation}
+F_i^g=F_{i_4}^g+N(0,1)\times(F_{i_5}^g-F_{i_6}^g)
+\end{equation}
+with $i_4\neq i_5\neq i_6$ and $i_4,i_5,i_6 \in U(1,2,\dots,s)$.
+
+Thus, each individual i has its own scaling factor $F_i$ which is a function of the scaling factor of randomly selected individuals. The parameter $F_i$ is first initialized for each individual in the population from a normal distribution, $N(0.5, 0.15)$, generating values which fits well within the range $(0,1]$.
+
+\subsection{Self-adapting parameter(jDE)}
+
+Brest et al. proposed a new adaptive DE, jDE, which is based on the classic mutation strategy ``DE/rand/1/bin''. Similar to other schemes, jDE fixes the population size during the optimization while adapting the control parameters $F_i$ and $CR_i$ associated with each individual. jDE regenerates new values for $F_i$ and $CR_i$ according to uniform distributions with probabilities.
+
+Control parameters are updated as follows:
+\begin{equation}
+F_i=\left\{
+\begin{array}{ll}
+rndreal_i[0,1]\quad rndreal[0,1]<\tau_1\\
+F_i \quad \text{otherwise}
+\end{array}
+\right.
+\end{equation}
+\begin{equation}
+CR_i=\left\{
+\begin{array}{ll}
+rndreal_i[0,1]\quad rndreal[0,1]<\tau_2\\
+CR_i \quad \text{otherwise}
+\end{array}
+\right.
+\end{equation}
+where $rndreal[a,b]$ is an uniformly distributed random number between a and b. $\tau_1 =0.1, \tau_2 =0.1$ indicate probabilities to adjust factors $F_i$ and $CR_i$. The newly generated $F_i$ and $CR_i$ are obtained before the mutation and crossover operations. Therefore, they influence the following recombination and selection. The method has been proved efficient based on some benchmark experimental results.\\
+
+Although the above attempts have shown the potential of parameter self-adaptation technique in improving DE performance, the premature convergence during evolution remains a significant and challenging research topic. In the second propose of this paper, we adopt clearing niching method in mutation strategy combined with a two-layer parameter learning DE which intended to improve the efficiency and robustness of the system.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Proposed method}\label{ch4}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Chapter 4
+Several enhanced strategies for diversity maintenance have been proposed which target different stages of the evolution process. Niching method is on of the well known strategies proposed to reduce the effects of evolution drift resulting from the selection mechanism, to allow the formation and the maintenance of different solutions and to prevent the DE from being trapped in local optima.
+
+In the niching method the analogy with nature is straightforward. As in an ecosystem there are different subsystems that contain many diverse species. The number of elements in a niche is determined by its resources and by the efficiency of each individual in taking profit of these resources. Using this analogy, it is possible for DE to maintain its population diversity during the evolution.
+
+Inspired by former relative works on balance searching and keep diversity during evolution, we propose follow two method to enhance DE mainly from keeping diversity and balance searching.
+
+
+\section{Clearing Niching with Boltzmann Scheme}
+
+The clearing procedure we proposed is used as a basic niching frame in DE, to implement the niching learning in the selection procedure of DE, the individuals are firstly grouped into many niches by a certain partition strategy. A static radius $\sigma$ is used to partition the niches in a conventional niching clearing method. Then, the $k$ best individuals are selected from each niche respectively and a combination of selected individuals is applied to estimate probabilistic model of DE. The capacity parameter $k$ is defined as the maximum number of winners a certain niche can accept. In the conventional method ,the capacity $k$ is set as a static value for all niches, and it can be set in arange from 1 to the population size, which is convenient for maximized or minimized effect.
+
+A balanced niching searching strategy based on DE is introduced. 1) The values of the clearing radius $\sigma$ are determined by distance matrix of individuals calculated in every generation, the individuals are clustered before submitting them to the niching clearing and a cluster can be seen as a niche. 2) A niche capacity $k$ selection mechanism based on the Boltzmann scheme is utilized to realize a balance searching. For a certain niche, the number of winners represents the searching power of DE in this searching area. Therefore, the niche capacity selection can be utilized to tune the searching behavior of DE.
+
+An efficient DE with a balance searching should have the behaviors described as follows. The degree of exploration is monotonically decreasing, while the degree of exploitation is monotonically increasing during the search run. To realize this efficient searching procedure with a balance between exploration and exploitation, which means at the beginning of evolution, the searching area should be as large as possible, and after several iterations, the evolution will be better to converge into interesting areas instead of poor performance areas. The capacity $k$ should be large at first and then gradually reduced.
+
+During the evolution, a set of selected individuals are used to estimate the probabilistic model. Set M as the selected population size in each generation, and in order to realize a balance searching procedure, a mechanism of niche capacity selection based on Boltzmann scheme is defined as following equations:
+
+\begin{equation}
+k_g(n_i)=M\times[w_g\times E_{i_g}(n_i)+(1-w_g)\times E_{r_g}(n_i)]
+\end{equation}
+where $n_i$ is the $i$-th niche of $g$-th generation, $w_t$ is a Boltzmann weight of $t$-th iteration, which can be described as follows:
+
+\begin{equation}
+w_g=[\frac{e^{frac{g}{FES_max}}-1}{e-1}]^\alpha, 1<i<cl_g
+\end{equation}
+where $FES_{max}$ is the maximum iterations of the algorithm. And the scaling factor $\alpha$ is a parameter to tune the Boltzmann scheme.
+
+In the proposed mechanism of niche capacity selection, two different selection strategies are assembled by the Boltzmann weight $w_g$ related with teh generation $g$. Tuned by this weight, the searching procedure explores the search areas as more as possible by dominating the exploration strategy, at the end of searching, the searching exploitation is enforced to refine the already found solutions by dominating the exploitation strategy.
+
+\subsection{The Exploitation probability $E_{r_g}(n_i)$}
+
+During the searching procedure for optimal values, if a certain area has searched before and shown poor performance, then we do not want to search it again which wastes time, so a punishment mechanism is needed. A niche novelty metric is proposed to record the overlapping information, and it is used to evaluate the degree of the corresponding niche explored by the previous searching. The niches with smaller novelty metric values will be punished moderately at the exploration searching strategy to realize the diversity preservation at the niche level.
+
+The niche novelty metric $nov_g(n_i)$ of niche $n_i$ in the $g$-th generation is defined as follows.
+\begin{equation}
+nov_g(n_i)=\beta ^{O_g(n_i)}, \quad 0<\beta<1
+\end{equation}
+where $n_i$ denotes the $i$-th niche, $\beta$ is the penalty parameter for niche novelty, and $O_g(n_i)$ the overlapping parameter of niche $n_i$ in the $g$-th generation.
+
+Describe a niche $n_i$ at generation $g$ by the center $C_g(n_i)$ and radius $\sigma_g(n_i)$ where the center determining its position and the radius determining the area locating. If the center of a niche $n_i$ in the $g$-th generation is inside the niche $n_j$ of $g-1$ generation, that means, the distance between two centers $C_{g-1}(n_j)$ and $C_g(n_i)$ is less than the radius $\sigma_{g-1}(n_j)$, in this case, this niche $n_i$ is overlapped by $n_j$ of $g-1$ generation.
+
+Set $O_g(n_i)=0$ as the initial value. If the niche $n_i$ is one of the $k$ niches that are overlapped by the niche $n_j$ from former generation, then set overlap value with:
+
+\begin{equation}
+O_g(n_i)=O_{g-1}(n_j)+1
+\end{equation}
+
+Equation upon is with probability $\frac{k-1}{k}$, which means, among all the $k$ niches, only one keeps to 0, and other $k-1$ niches are set to $O_{g-1}(n_j)+1$ .
+
+
+The niche novelty metric reflects the information of search space explored by the DE, and the exploration searching probability $E_{r_g}(n_i)$ is defined by a novelty-proportionate strategy as follows:
+
+\begin{equation}
+E_{r_g}(n_i)=\frac{nov_g(n_i)}{\sum\limits_{j=1}^{cl_g}nov_g(n_j)}
+\end{equation}
+where $cl_g$ is the cluster number of the $g$-th iteration population.
+
+
+
+
+\subsection{The Exploitation probability $E_{i_g}(n_i)$}
+
+A popular fitness-proportionate method is used as exploitation strategy of niching DE, the exploitation searching probability $E_{i_g}(n_i)$ is calculated by:
+\begin{equation}
+E_{i_g}(n_i)=\frac{f_g(n_i)}{\sum\limits_{j=1}^{cl_g}f_g(n_j)}
+\end{equation}
+where $f_g(n_i)$ is the maximum fitness value of the $i$-th niche in the $g$-th iteration. 
+
+The fitness-proportionate niche capacity selection is defined based on the best fitness value in a niche. It can guide the DE to search more promising area than uninteresting area.
+
+For better understanding, the framework of the first proposed clearing niching with Boltzmann scheme is described as follows:
+
+1. Generate the first population of NP individuals in stochastic, the individuals should be initialize to cover different areas in the search space, which NP should be not too small, we set NP to 100.
+
+2. Evaluate each individuals of the current population, then the individuals of current population is grouped into clusters by clearing niching method based on a certain distance metric.
+
+3. Calculate the novelty metric for each cluster and evaluate each niche by its best solution found.
+
+4. Estimate the probabilistic model from the selected individuals, save the winner set as the pool for target vectors.
+
+5. Randomly choosing target vectors from capacity $k$, and step vectors $x_{r_2}-x_{r_3}$ are randomly choose from the original population NP.
+
+6. Crossover and selection procedures are exactly the same with conventional DE, by using greedy strategy, a new population for the next iteration is generated.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Clearing Niching with Self-adaptive DE}
+As we mentioned dominate individuals (target vectors $X_{r_1}^g$), are highly relevant with convergence efficiency. The target vector in each iteration of searching should cover various niches and represent different niches.
+
+Pseudo code of clearing procedure is shown in Algorithm \ref{algorithm1}. At the beginning of the $g^{th}$ iteration, rank the fitness value of population in order, draw a circle $C_1^g$ with center at the best fitness individual $X_1^g$ and radius equal to $\delta$ (``Hamming'' distance in simulation). The circle $C_1^g$ may contain other individuals, but only remain the best individual as ``the winner'', then ``clear'' (delete) other individuals in this circle. So far we have got a first niche $N_1^g$ with a winner $X_1^g$, the rest individuals are circling exactly the same as the first one. When there are no other individuals except winners, the clearing procedure completes and we get a smaller population group $\{X_c^g\}$.
+
+By finding the efficient individuals of niches in each generation, we intended to speed up the convergence. Although we narrow down the domain of target individuals and in each iteration generate as $X_{cr}^g$, the step vector $X_{r_2}^g-X_{r_3}^g$ are still randomly chosen from population $\{X_i^g\}$ to maintain the variety of searching steps. This clearing procedure has no relationship with following mutation, crossover and selection procedures, it can be parallel executed with TLDE.
+%
+\begin{figure}[t]
+\centering
+\includegraphics[width=8cm]{3}
+\caption{Evolution of the basic DE} \label{4}
+\end{figure}
+
+Fig.\ref{4} shows the evolution of the basic DE from $X_i^g\to X_i^{g+1}$. The basic DE is a doubled and parallel one, in which each individual is assigned with two set of control parameters described in Fig.\ref{2}. The two sets of control parameters $(\upsilon F_i^g$, $\upsilon CR_i^g)$ and $(oF_i^g,oCR_i^g)$ are fixed in $L_p$ generations of a learning period. After a learning period, the control parameters of each individual are evaluated with a success rate, which indicates whether and which set of the control parameters are suitable for the next learning period.
+
+Searching procedure with both mutation vectors are computed by the mutation scheme ``DE/rand/1/bin'':%
+\begin{equation}
+\left\{\begin{array}{ll}
+oV_i^g = X_{C_r}^g + oF_i^g \cdot (X_{r_1}^g - \hat{X}_{r_2}^{g-1})\\
+\upsilon V_i^g = X_{C_r}^g + \upsilon F_i^g \cdot (X_{r_1}^g - \hat{X}_{r_2}^{g-1})
+\end{array}
+\right.
+\label{eq:eq3}
+\end{equation}
+where the index $c_r$,$r_1$,$r_2$ are integers chosen among $[1,NP]$, $X_{c_r}$ is randomly chosen from winner set $\{X_c^g\}$ after clearing procedure, which we will describe later in detail. $X_{r_1}$is a random vector from current population $\{X_{1,2,\dots,NP}^g\}$,
+while $\hat{X}_{r_2}^{g-1}$ is chosen from vectors of backup set from last learning period $\{X_b^g\}$, randomly.
+
+As we have got a pair of trail vectors $oV_i^g$ and $\upsilon V_i^g$, the next step crossover with $oCR_i$ and $\upsilon CR_i$ is described as follows:
+\begin{equation}
+oU_{i,j}^g=\left\{
+\begin{array}{ll}oV_{i,j}^g \quad \text{if} \: rand_{i,j} (0,1)\leq oCR_{i,j}^k\:or\:j=j_{rand}\\
+X_{i,j}^g \quad \text{otherwise}.
+\end{array}
+\label{eq:eq4}
+\right.
+\end{equation}
+\begin{equation}
+\upsilon U_{i,j}^g=\left\{
+\begin{array}{ll}\upsilon V_{i,j}^g\quad \text{if} \quad rand_{i,j} (0,1)\leq \upsilon CR_{i,j}^k\:or \:j=j_{rand}\\
+X_{i,j}^g\quad \text{otherwise}.
+\end{array}
+\right.
+\label{eq:eq5}
+\end{equation}
+
+After mutation, crossover procedure in the second layer, those vectors get from equation (\ref{eq:eq4})(\ref{eq:eq5}) supply a richer set to select target vectors:%
+\begin{equation}
+X_i^{g+1}=\left\{
+\begin{array}{lll}oU_i^g\quad \text{if} \quad f(oU_i^g)\leq Min_i^g\\
+\upsilon U_i^g\quad \text{if} \quad f(\upsilon U_i^g)\leq Min_i^g\\
+X_i^g\quad \text{otherwise}.
+\end{array}
+\right.
+\label{eq:eq6}
+\end{equation}
+where $Min_i^g$ defines as $\min\{f(oU_i^g),f(\upsilon U_i^g),f(X_i^g)\}$ for we need to find out the global minima. But if the trail vectors $oU_i^g$ or $\upsilon U_i^g$ is not the best one but better than $X_i^g$, it will be reserved to backup solution set $\{X_b^g\}$ and participate mutation in next generation by equation (\ref{eq:eq3}).
+
+As we mentioned dominate individuals (target vectors $X_{r_1}^g$), are highly relevant with convergence efficiency. The target vector in each iteration of searching should cover various niches and represent different niches.
+
+Pseudo code of clearing procedure is shown in Algorithm \ref{algorithm1}. At the beginning of the $g^{th}$ iteration, rank the fitness value of population in order, draw a circle $C_1^g$ with center at the best fitness individual $X_1^g$ and radius equal to $\delta$ (``Hamming'' distance in simulation). The circle $C_1^g$ may contain other individuals, but only remain the best individual as ``the winner'', then ``clear'' (delete) other individuals in this circle. So far we have got a first niche $N_1^g$ with a winner $X_1^g$, the rest individuals are circling exactly the same as the first one. When there are no other individuals except winners, the clearing procedure completes and we get a smaller population group $\{X_c^g\}$.
+
+By finding the efficient individuals of niches in each generation, we intended to speed up the convergence. Although we narrow down the domain of target individuals and in each iteration generate as $X_{cr}^g$, the step vector $X_{r_2}^g-X_{r_3}^g$ are still randomly chosen from population $\{X_i^g\}$ to maintain the variety of searching steps. This clearing procedure has no relationship with following mutation, crossover and selection procedures, it can be parallel executed with TLDE.
+
+%=============================================================================
+\begin{algorithm}
+ \renewcommand{\arraystretch}{0.6}
+\caption{Evolution of double basic DE}
+\begin{algorithmic}[1]
+\Require set of winners $\{X_C^g\}$, population $\{X_{NP}^g\}$
+\Ensure global minima $f(X_{best})$
+    \For {$i=1 \to NP$}\\
+  /*generate a pair parameters */
+    \State $\upsilon F_i^g\gets oF_i^g+rand_i\cdot (F_{r_1}^g-F_{r_2}^g)$, $\upsilon CR_i^g\gets oCR_i^g+rand_i\cdot (CR_{r_1}^g-CR_{r_2}^g)$\\
+  /*generate a pair mutation vectors*/
+    \State $oV_i^G \gets X_{Cr}^g + oF_i^g \cdot (X_{r_1}^g - \hat{X}_{r_2}^{g-1})$, $\upsilon V_i^g \gets X_{Cr}^g + \upsilon F_i^g \cdot (X_{r_1}^g - \hat{X}_{r_2}^{g-1})$\\
+  /*where clearing winners $X_{Cr}^g \in \{X_C^g\}$\\
+  population individuals $X_{r_1}^g \in \{X_{NP}^g\}$\\
+  backup individuals $\hat{X}_{r_2}^{g-1} \in \{\hat{X}_B^g\}$ */
+ %%==============================================================================
+ \For {$j= 1\to D$}
+  /*crossover mutation vectors with trail vectors*/
+ \If {$j=j_{rand}$ or $rand(0,1)<CR_i$}
+ \State $oU_{i,j}^g \gets oV_{i,j}^g$, $\upsilon U_{i,j}^g \gets \upsilon V_{i,j}^g$
+ \Else
+ \State $oU_{i,j}^g \gets X_{i,j}^g$
+ \EndIf
+ \EndFor
+ \If {$f(oU_i^g)$ is the smallest}
+    \State $X_i^{g+1} \gets oU_i^g $, $\{\hat{X}_B^g\} \gets \upsilon U_i^g $
+        \ElsIf{$f(\upsilon U_i^g)$ is the smallest}
+    \State $X_i^{g+1} \gets \upsilon U_i^g $, $\{\hat{X}_B^g\} \gets oU_i^g $
+        \Else
+    \State $X_i^{g+1} \gets X_i^g $
+        \EndIf
+ \EndFor
+ %%==============================================================================
+ \end{algorithmic}
+\label{algorithm2}
+\end{algorithm}
+%=============================================================================
+As shown in Fig.\ref{ds2}, the TLDE consists of two layers: a top DE layer and a bottom DE layer. The bottom DE layer is a doubled basic DE for normal evolution procedure, while the top DE layer is a simplified DE for self-adapting control parameters.
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=10cm]{ds2.jpg}
+\caption{Structure of the two-layered DE} \label{ds2}
+\end{figure}
+\subsection{The doubled basic DE}
+
+The doubled basic DE is a conventional DE described in Section II.A, evolving parallel with two sets of control parameters. The evolution is divided into multiple evolution periods called learning periods used by the simplified DE in the top layer for control parameter evolution. Each learning period consists of $L_p$ generations with two set of fixed control parameters from the simplified DE in the top layer.
+
+\subsection{The simplified DE}
+
+As shown in Fig.\ref{3}, the simplified DE is a conventional DE without crossover operation, for control parameter adaptation. The control parameters are evaluated over the learning period by the basic DE in the bottom layer.\\
+
+%
+%\begin{figure}[t]
+%\centering
+%\includegraphics[width=7cm]{4.jpg}
+%\caption{Evolution in Parameter layer} \label{3}
+%\end{figure}
+%============================================================================
+\begin{figure}[!h]
+\centering
+\includegraphics[width=6cm]{4.jpg}
+\caption{Evolution of the simplified DE for control parameter adaptation} \label{3}
+\end{figure}
+
+%=============================================================================
+1) \emph{Initialization}
+
+In order to realize a self-adaptation of control parameters by DE, we create a population of control parameters by assigning a set of control parameters to each individual of the basic DE in the bottom layer, which are randomly initialized. As shown in Fig.\ref{1}, $X_i^g$ denotes the $i$ individual in the $g$th generation, while $F_i^g$ and $CR_i^g$ the corresponding control parameters.\\
+%
+\begin{figure}[H]
+\centering
+\includegraphics[width=9cm]{1.jpg}
+\caption{Individuals and the corresponding control parameters} \label{1}
+\end{figure}
+%===========================================================================================================
+%\begin{table}[h]
+%\caption{Parameter Learning: encoding aspect}
+%\begin{center}\begin{tabular}{| l | c | c |}
+%\hline
+% $X_1^G$	&$F_1^G$	&$CR_1^G$	\\
+%\hline
+% $X_2^G$	&$F_2^G$	&$CR_2^G$	\\
+%\hline
+% \dots      &\dots      &\dots       \\
+%\hline
+% $X_{NP}^G$	&$F_{NP}^G$	&$CR_{NP}^G$	\\
+%\hline
+%\end{tabular}
+%\end{center}
+%\end{table}
+
+%=============================================================================
+2) \emph{Mutation}
+
+The mutation is performed for generating new control parameters.
+\begin{equation}
+\left\{\begin{array}{l}
+\upsilon F_i^g=oF_i^g+\omega _i\cdot (F_{r1}^g-F_{r2}^g),\\
+\upsilon CR_i^g=oCR_i^g+\omega _i\cdot (CR_{r1}^g-CR_{r2}^g).
+\end{array} \right.
+\label{eq:eq1}
+\end{equation}
+where $(oF_i^g,oCR_i^g)$ are control parameters update from last learning period. $r_1$, $r_2$ $(r_1 \ne r_2)$ and $\omega_i$ are random values uniformly distributed in a range of (0,1).
+
+By this step, we have got two sets of control parameters $[oF_i^g,oCR_i^g]$ and $[\upsilon F_i^g,\upsilon CR_i^g]$ assigned to each individual, see Fig.\ref{2}. These two sets of control parameters are used by the basic DE during a learning period, and which set to be chosen for the next learning period depends on their performance.\\
+%\begin{table}[h]
+%\caption{Parameter Learning: encoding aspect of two-layer DE}
+%\begin{center}\begin{tabular}{| l | c | c |}
+%\hline
+% $X_1^G$	&$oF_1^G$	&$oCR_1^G$	\\
+% &$\upsilon F_1^G$	&$\upsilon CR_1^G$\\
+%\hline
+% $X_2^G$	&$oF_2^G$	&$oCR_2^G$	\\
+% &$\upsilon F_2^G$	&$\upsilon CR_2^G$\\
+%\hline
+% \dots      &\dots      &\dots       \\
+%\hline
+% $X_{NP}^G$	&$oF_{NP}^G$	&$oCR_{NP}^G$	\\
+% &$\upsilon F_{NP}^G$	&$\upsilon CR_{NP}^G$   \\
+%\hline
+%\end{tabular}
+%\end{center}
+%\end{table}
+%===================================================================================
+%
+\begin{figure}[H]
+\centering
+\includegraphics[width=11cm]{2}
+\caption{Two sets of control parameters generated by mutation} \label{2}
+\end{figure}
+%=============================================================================
+3) \emph{Selection}
+
+It is a natural assumption that better control parameters are more likely to generate better offspring to survive, which inverse, good individuals are more likely generated by individuals with good parameters from last iteration.
+
+However, because of the stochastic characteristics of DE it is hard to evaluate a better control parameter in just one generation, as done in many existing self-adaptive DE algorithms. To solve this problem, instead of generating new control parameters in each generation, we introduce a so called learning period with $L_p$ generations ($L_p=15$ in the simulation), the control parameters remain fixed till the next learning period, and the one with better rate that evolves minimum outcomes will survive.
+
+Moreover, previous parameter selection procedure apply greedy strategy and remain parameters of best individuals. Somewhat differently, we apply a probability $P$ as success rate to evaluate the parameters. Only when the success rate $P$ is higher than a threshold $\tau$, can the parameters be saved. The reason we omit parameters generate better individuals with success rate under $\tau$ is that, a ``spark'' of good control parameters is unstable and has high probability lead to a local optimal.
+
+According this scheme, we intend to keep both local and global search ability to generate potentially good mutation vectors throughout the evolution process. $oP_i^k$ and $\upsilon P_i^k$ represent the probability of generating $i$th individual as optimal value in the $k$th learning period, which are calculated as follows:
+\begin{equation}
+\begin{array}{ll}
+oP_i^k= \sum_{g=L_p\ast(k-1)}^{L_p\ast k} \{f(oU_i^g)\leq Min_i^g\}/L_p\\
+\upsilon P_i^k=\sum_{g=L_p\ast(k-1)}^{ L_p\ast k} \{f(\upsilon U_i^g)\leq Min_i^g\}/L_p
+\end{array}
+\end{equation}
+where $oP_i^k$ is the success evolve rate for $(oF_i^k,oCR_i^k)$, and $\upsilon P_i^k$ is for $(\upsilon F_i^k,\upsilon CR_i^k)$.
+
+By comparing the success evolve rate, the better one with probability higher than $\tau$ ($\tau =0.3$) will be selected to replace $(oF_i^{k+1},oCR_i^{k+1})$. For each individual, the pair of parameters $(oF_i^k,oCR_i^k)$ in the $k^{th}$ learning period updates at the same time, according to following equations:
+
+\begin{equation}
+(oF_i^{k+1},oCR_i^{k+1})=\left\{
+\begin{array}{lll}
+(oF_i^{k},oCR_i^{k})  \quad \text{if} \quad oP_i^k\ge Max_i^k \\
+(\upsilon F_i^{k},\upsilon CR_i^{k})  \quad\text{if} \quad \upsilon P_i^k\ge Max_i^k \\
+(F_{\tau}^{k},CR_{\tau}^{k}) \quad \quad \text{otherwise}\\
+\end{array}
+\right.
+\end{equation}
+$Max_i^k$ defines as $\max\{oP_i^k,\upsilon P_i^k,\tau\}$ to find the parameters with highest probability to generate good individuals. Since a certain success rate of parameters are required to ensure individual quality, those control parameters with success rate less than $\tau$ will be regenerated :
+\begin{equation}
+\left\{
+\begin{array}{ll}
+F_{\tau}^k= randc_i(\mu F^k,randn)\\
+CR_{\tau}^k= randn_i(\mu CR^k,randn)
+\end{array}
+\right.
+\end{equation}
+where $randc_i$ is Cauchy distribution and $randn_i$ is normal distribution. Parameters $\mu F$ and $\mu CR$ represent the location parameter of distribution.
+\begin{equation}
+\left\{
+\begin{array}{ll}
+\mu F^k =(1-c)\times \mu F^0+ c\times mean_L(S_F^{k})\\
+\mu CR^k = (1-c)\times \mu CR^0+ c\times mean_A(S_{CR}^{k})
+\end{array}
+\right.
+\end{equation}
+where parameters $\mu F^0$ and $\mu CR^0$ are initialized location as 0.5. c is a positive constant between 0 and 1, which we set to 0.5. $mean_A()$ is the usual arithmetic mean, $S_{CR}^{k}$ is the set of successful crossover probabilities in current learning period. $S_F^{k}$ is the set collect for the F of success evolved population during the learning period, and $mean_L()$ is the Lehmer mean:
+\begin{equation}
+mean_LS_F=\frac{\sum_{F\in S_F}F^2}{\sum_{F\in S_F}F}
+\end{equation}
+
+In this way the control parameter $(oF_i^{k+1},CR_i^{k+1})$ are self-learning and updating after every learning period by choosing better success rate between $(oF_i^k,oCR_i^k)$ and $(\upsilon F_i^k,\upsilon CR_i^k)$. The $k$th learning period is shown in Algorithm \ref{algorithm2}.
+\begin{algorithm}
+ \renewcommand{\arraystretch}{0.6}
+\caption{Selection of parameters}
+\begin{algorithmic}[1]
+\Require control parameters$(oF_i^{k},oCR_i^{k})$
+% selection set$\{oU_i^g\}$, $\{\upsilon U_i^g\}$, $\{X_i^g\}$
+\Ensure parameters for next period $(oF_i^{k+1},oCR_i^{k+1})$\\
+ /*select the best and save the backup*/
+
+
+ success rate $oP_i^k \Leftarrow (oF_i^k,oCR_i^k)$,  $\upsilon P_i^k \Leftarrow [\upsilon F_i^k,\upsilon CR_i^k]$
+\For {$i=1 \to NP$}
+    \If{$oP_i^k >\upsilon P_i^k> \tau$}
+    \State $F_i^{k+1} \gets oF_i^k$
+    \State $CR_i^{k+1} \gets oCR_i^k$
+    \ElsIf{$\upsilon P_i^k> oP_i^k > \tau $}
+    \State $F_i^{k+1} \gets \upsilon F_i^k$
+    \State $CR_i^{k+1} \gets \upsilon CR_i^k$
+    \Else
+    \State $F_i^{k+1} \gets randni(\mu F, rand(0,1))$
+    \State $CR_i^{k+1} \gets randni(\mu CR, rand(0,1))$
+    \EndIf
+ \EndFor\\
+ %%==============================================================================
+ /*Update backup set $\{\hat{X}_b^g\}$ and $B \leq NP$*/
+ \State $\mu F \gets (1-c)\times \mu F+ c\times mean_L(S_F^{k})$
+ \State $\mu CR \gets (1-c)\times \mu CR+ c\times mean_A(S_{CR}^{k})$
+\end{algorithmic}
+\label{algorithm3}
+\end{algorithm}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Chapter 4
+\chapter{Experiments} \label{ch5}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Chapter 4
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Benchmark Functions}
+
+To assure a fair comparison, twenty complicate benchmark functions from \cite{cit:17}\cite{cit:18} are choosen to test the performance of our proposed method. The benchmarks we adopt include several unimodal and multimodal functions, most of them have some global optima and many local optima in high dimension (30D) , which are difficult to find global minima especially shifted and rotated functions $f_{14}-f_{20}$. If the number of test problems were smaller, a general conclusion will be less convince. Using a test set with inadequate types of problems also exist a potential risk, that the out-coming good results may limited applicable to some unique problems. Such bias might not be useful for general optimization. Benchmark functions are shown in table \ref{Benchmark}, for a intuitive result, the global minima of all these functions are all set to $0$.
+
+The first 13 functions are from Yao {\it et al.}'s proposal \cite{cit:17}and the last 7 functions are from CEC 2005's proposal \cite{cit:18}. In order to evaluate the algorithm performance in different aspects, the test functions can be devided into three groups according to their different characteristics. functions $f_1-f_6$ are unimodal, while $f_7-f_{13}$ are multimodal functions, which are all difficult to be optimized because the number of local optima increases exponentially with the problem dimension. The third group includes the shifted and rotated functions $f_{14}-f_{20}$, which are taken from the CEC 2005's $f_6$ to $f_{10}$ \cite{cit:18}. These functions are chosen because thy are all difficult multimodal functions with the global optimal position shifted or the search variables rotated, or both.
+
+Therefore, all these 20 functions are useful to test the global searching ability of the algorithms because they cover the different problem characteristics including unimodal, multimodal, separable, non-separable, shifted, and rotated. Detailed descriptions of each function is given in \cite{cit:17}\cite{cit:18}. In this paper, all the functions are set as 30 dimensions. The search ranges, global optimal positions, and acceptable error values are adopted directly from the literature \cite{cit:17}\cite{cit:18}.
+
+\begin{table*}[tb]
+ \renewcommand{\arraystretch}{0.6}
+\caption{\large The twenty global optimization benchmark functions}
+\begin{center}
+\begin{tabular}{c c c c c c}
+\hline
+\multicolumn{1}{c}{Function}
+& \multicolumn{1}{c}{Search Space}
+& \multicolumn{1}{c}{Global Opt.x}
+& \multicolumn{1}{c}{Global Min}
+& \multicolumn{1}{c}{Accept}
+& \multicolumn{1}{c}{Name}\\
+\hline
+ f1& $[-100,100]^D$ & $\{0\}^D$ & 0 & $1\times 10^{-6}$ &Sphere\cite{cit:17}\\
+ f2& $[-100,100]^D$ &$\{0\}^D$ &0 & $1\times 10^{-6}$ &Schwefel's2.21\cite{cit:17}\\
+ f3& $[-10,10]^D$ & $\{0\}^D$ & 0 & $1\times 10^{-6}$ &Schwefel's2.22\cite{cit:17}\\
+ f4& $[-100,100]^D$ & $\{0\}^D$ &0 & $1\times 10^{-6}$ &Quadric\cite{cit:17}\\
+ f5& $[-100,100]^D$ & $\{0\}^D$ &0 & 0 &Step\cite{cit:17}\\
+ f6&$[-1.28,1.28]^D$& $\{0\}^D$ &0 & $1\times 10^{-2}$ &Noise\cite{cit:17}\\ \hline
+ f7& $[-10,10]^D$   & $\{0\}^D$ &0 & $1\times 10^{-6}$ &Rosenbrock\cite{cit:17}\\
+ f8& $[-500,500]^D$ & $\{420.9687\}^D$ &0 & $1\times 10^{-2}$ &Schwefel\cite{cit:17}\\
+ f9&$[-5.12,5.12]^D$& $\{0\}^D$ &0 & $1\times 10^{-6}$ &Rastrigin\cite{cit:17}\\
+ f10& $[-32,32]^D$  & $\{0\}^D$ &0 & $1\times 10^{-6}$ &Ackley\cite{cit:17}\\
+ f11& $[-600,600]^D$& $\{0\}^D$ &0 & $1\times 10^{-6}$ &Griewank\cite{cit:17}\\
+ f12& $[-50,50]^D$  & $\{1\}^D$ & 0 & $1\times 10^{-6}$ &Generalized Penalized1.1\cite{cit:17}\\
+ f13& $[-50,50]^D$  & $\{1\}^D$ &0 & $1\times 10^{-6}$ &Generalized Penalized1.2\cite{cit:17}\\
+ \hline
+ f14& $[-100,100]^D$ & o &390 & $1\times 10^{-2}$ &Shifted Rotated Rosenbrock\cite{cit:18}\\
+ f15& $[-600,600]^D$ & o &-180 & $1\times 10^{-2}$ &Shifted Rotated Griewank\cite{cit:18}\\
+ f16& $[-32,32]^D$ & o &140 & $1\times 10^{-2}$ & Shifted Rotated Ackley\cite{cit:18}\\
+ f17& $[-5,5]^D$ & o &-330 & $1\times 10^{-2}$ &Shifted Rastrigin\cite{cit:18}\\
+ f18& $[-5,5]^D$ & o &-330 & $1\times 10^{-2}$ & Shifted Rotated Rastrigin\cite{cit:18}\\
+ f19& $[-0.5,0.5]^D$ & o &90 & $1\times 10^{-2}$ &Shifted RotatedWeierstrass\cite{cit:18}\\
+ f20& $[-pi,pi]^D$ & o &-460 & $1\times 10^{-2}$ &Schwefel's2.13\cite{cit:18}\\ \hline
+\end{tabular}
+\label{Benchmark}
+\end{center}
+\footnotesize All the test functions are with dimension D-30. Search space cross a wide range from 1 to 1200. The $f_{14}$ to $f_{19}$ contains multiple individuals to the minima $f(x)$. Accept is the acceptable error within the predefined minima value in 50 independent runs.
+\end{table*}
+
+For each of these functions, the goal is to find the global minimizer, formally defined as, given $f: D\to R$, $D = \prod\limits_{i=1}^d[a_i,b_i], a_i<b_i, i=1,2,\dots,d$, find $x^{\ast}\in R^D$ with $f(x^{\ast}\leq f(x))$. The follow functions are chosen:\\
+\\
+1. Sphere function, defined as $f_1(x)=\sum\limits_{i=1}^Dx_i^2$,
+
+where $x^{\ast}=0$ and $f(x^{\ast})=0$ for$[-100,100]^D$.\\
+\\
+2. Schwefel's 2.21 function, defined as $f_2(x)=max_i(\lvert X_i\rvert,1\leq i\leq D)$,
+
+where $x^{\ast}=0$ and $f(x^{\ast})=0$ for$[-100,100]^D$.\\
+\\
+3. Schewefel's 2.22 function, defined as $f_3(x)=\sum\limits_{i=1}^D\lvert x_i\rvert +\prod\limits_{i=1}^D\lvert X_i \rvert$,
+
+where $x^{\ast}=0$ and $f(x^{\ast})=0$ for$[-10,10]^D$.\\
+\\
+4. Schewefel's 1.2 function, defined as
+$f_4(x)=\sum\limits_{i=1}^D(\sum\limits_{j=1}^i x_i)^2$,
+
+where $x^{\ast}=0$ and $f(x^{\ast})=0$ for$[-100,100]^D$.\\
+\\
+5. Step function, defined as
+$f_5(x)=\sum\limits_{i=1}^D(\lvert x_i+0.5\rvert)^2$,
+
+where $x^{\ast}=0$ and $f(x^{\ast})=0$ for$[-100,100]^D$.\\
+\\
+6. Step function, defined as
+$f_6(x)=\sum\limits_{i=1}^Dix_i^4+rand(0,1)$,
+
+where $x^{\ast}=0$ and $f(x^{\ast})=0$ for$[-1.28,1.28]^D$.\\
+\\
+7. Rosenbrock function, defined as
+$f_7(x)=\sum\limits_{i=1}^{D-1}[100(x_{i+1}-x_i^2)^2+(x_i-1)^2]$,
+
+where $x^{\ast}=0$ and $f(x^{\ast})=0$ for$[-10,10]^D$.\\
+\\
+8. Schewefel function, defined as
+$f_8(x)=\sum\limits_{i=1}^D-x_isin(\sqrt{\lvert x_i\rvert}+418.9829\times D)$,
+
+where $x^{\ast}=0$ and $f(x^{\ast})=0$ for$[-500,500]^D$.\\
+\\
+9. Rastrigin function, defined as
+$f_9(x)=c[x_i^2-10cos(2\pi x_i)+10]$,
+
+where $x^{\ast}=0$ and $f(x^{\ast})=0$ for$[-5.12,5.12]^D$.\\
+\\
+10. Ackley function, defined as
+$f_{10}(x)=-20exp(-0.2\sqrt{\frac{1}{D}\sum\limits_{i=1}^Dx^2})-exp(\frac{1}{D}\sum\limits_{i=1}^Dcos2\pi x_i)+20+\epsilon$,
+
+where $x^{\ast}=0$ and $f(x^{\ast})=0$ for$[-32,32]^D$.\\
+\\
+11. Grewank function, defined as
+$f_{11}(x)=\frac{1}{4000}\sum\limits_{i=1}^D x_i^2-\prod\limits_{i=1}^Dcos(\frac{x_i}{\sqrt{i}}+1)$,
+
+where $x^{\ast}=0$ and $f(x^{\ast})=0$ for$[-600,600]^D$.\\
+\\
+12. Generalized Penalized function, defined as
+
+$f_{12}(x)=\frac{\pi}{D}{sin(\pi y_1)^2+\sum\limits_{i=1}^{D-1}(y_i-1)^2[1+10sin(\pi y_{i+1})^2]+(y_D-1)^2}+\sum\limits_{i=1}^Du(x_i,10,100,4)$,
+
+where $y_i=1+\frac{1}{4}(x_i+1)$,
+$u(x_i,a,k,m)=\left\{
+\begin{array}{lll}
+k(x_i-a)^m, \quad x_i>a\\
+0,\quad -a \leq x_i \leq a\\
+k(-x_i-a)^m, \quad x_i<-a
+\end{array}
+\right.$
+
+where $x^{\ast}=0$ and $f(x^{\ast})=0$ for$[-50,50]^D$.\\
+\\
+13 Generalized Penalized function, defined as
+
+$f_{13}(x)=0.1{sin(3\pi x_1)^2}+\sum\limits_{i=1}^{D-1}(y_i-1)^2[1+sin(3\pi x_{i+1})^2]+(x_D-1)[1+sin(2\pi x_D)^2]+\sum\limits_{i=1}^Du(x_i,5,100,4)$
+
+where $y_i=1+\frac{1}{4}(x_i+1)$,
+$u(x_i,a,k,m)=\left\{
+\begin{array}{lll}
+k(x_i-a)^m, \quad x_i>a\\
+0,\quad -a \leq x_i \leq a\\
+k(-x_i-a)^m, \quad x_i<-a
+\end{array}
+\right.$
+
+where $x^{\ast}=0$ and $f(x^{\ast})=0$ for$[-50,50]^D$.\\
+\\
+14. Shifted Rotated Rosenbrock function, defined as
+
+$f_{14}(x)=\sum\limits_{i=1}^{D-1}(100(z_{i+1}-z_i^2)^2+(x_i-1)^2)+f\_bias_6, z=(x-o)\ast M$,
+
+the shifted global optimum: $o=[o_1,o_2,\dots,o_D]$, M: orthogonal matrix
+
+where global optimum $x^{\ast}=o$ and $f(x^{\ast})=390$ for $[-100,100]^D$.\\
+\\
+15. Shifted Rotated Griewank function, defined as
+
+$f_{15}(x)=\sum\limits_{i=1}^D\frac{z_i^2}{4000}-\prod\limits_{i=1}^Dcos(\frac{z_i}{\sqrt{i}})+f\_bias_7, z=(x-o)\ast M$,
+
+the shifted global optimum: $o=[o_1,o_2,\dots,o_D]$, M: orthogonal matrix
+
+where global optimum $x^{\ast}=o$ and $f(x^{\ast})=-180$ for $[-600,600]^D$.\\
+\\
+16. Shifted Rotated Griewank function, defined as
+
+$f_{16}(x)=-20exp(-0.2\sqrt{\frac{1}{D}\sum\limits_{i=1}^Dx^2})-exp(\frac{1}{D}\sum\limits_{i=1}^Dcos2\pi x_i)+20+ e +f\_bias_8,z=(x-o)\ast M$,
+
+the shifted global optimum: $o=[o_1,o_2,\dots,o_D]$, M: orthogonal matrix
+
+where global optimum $x^{\ast}=o$ and $f(x^{\ast})=-140$ for $[-32,32]^D$.\\
+\\
+17. Shifted Rastrigin function, defined as
+
+$f_{17}(x)=\sum\limits_{i=1}^D(z_i^2-10cos(2\pi z_i)+10)+f\_bias_9,z=(x-o)\ast M$,
+
+the shifted global optimum: $o=[o_1,o_2,\dots,o_D]$, M: orthogonal matrix
+
+where global optimum $x^{\ast}=o$ and $f(x^{\ast})=-330$ for $[-5,5]^D$.\\
+\\
+18. Shifted Rotated Rastrigin function, defined as
+
+$f_{18}(x)=\sum\limits_{i=1}^D(z_i^2-10cos(2\pi z_i)+10)+f\_bias_{10},z=(x-o)\ast M$,
+
+the shifted global optimum: $o=[o_1,o_2,\dots,o_D]$, M: orthogonal matrix
+
+where global optimum $x^{\ast}=o$ and $f(x^{\ast})=-330$ for $[-5,5]^D$.\\
+\\
+19. Shifted Rotated Weierstrass function, defined as
+
+$F_{19}(x)=\sum\limits_{i=1}^D(\sum\limits_{i=1}^{kmax}(a^kcos(2\pi b^k(z_i+0.5))))-\sum\limits_{i=1}^D(\sum\limits_{i=1}^{kmax}(a^kcos(2\pi b^k \cdot 0.5)))+f\_bias_{11},$
+
+$a=0.5, b=3, kmax=20, z=(x-o)\ast M$,
+
+the shifted global optimum: $o=[o_1,o_2,\dots,o_D]$, M: orthogonal matrix
+
+where global optimum $x^{\ast}=o$ and $f(x^{\ast})=90$ for $[-0.5,0.5]^D$.\\
+\\
+20. Schwefel's 2.13 function, defined as
+$f_{20}(x)=\sum\limits_{i=1}^D(A_i-B_i(x))^2+f\_bias_{12}$,
+
+$A_i=\sum\limits_{i=1}^D(a_{ij}sin\alpha_i+b_{ij}cos\alpha_j)$,
+$B_i(x)=\sum\limits_{i=1}^D(\alpha_{ij}sinx_j+b_{ij}cosx_j)$,
+$\alpha=[\alpha_1,\alpha_2,\dots,\alpha_D]\in[-\pi,\pi]$,
+
+where global optimum $x^{\ast}=\alpha $ and $f(x^{\ast})=460$ for $[-\pi,\pi]^D$.\\
+\\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Niching Boltzmann DE with conventional DE}
+
+
+\begin{table*}[!ht]
+\renewcommand{\arraystretch}{0.8}
+\caption{Population Sensitivity of Conventional DE by experiment}
+\label{outcome}
+\begin{center}
+\begin{tabular}{|l|c|c|c|c|c|}
+
+\hline
+\multicolumn{1}{|c|}{Function}
+&\multicolumn{1}{c|}{POP:30}
+&\multicolumn{1}{c|}{POP:50}
+&\multicolumn{1}{c}{POP:100}
+&\multicolumn{1}{|c}{POP:300}
+&\multicolumn{1}{c|}{POP:1000}     \\
+\hline
+$f1$	&	1.20E-38	&	1.20E-38	&	1.29E-38	&	6.25E-20	&	0.0057	\\	\hline
+$f2$	&	1.12E-38	&	1.00E-38	&	1.06E-38	&	1.94E-12	&	0.0065	\\	\hline
+$f3$	&	0.13	&	0.0012	&	5.71E-08	&	0.051	&	8.68	\\	\hline
+$f4$	&	1.21E-10	&	0.013	&	6.94	&	1733.42	&	21687.74	\\	\hline
+$f5$	&	3.08E-33	&	3.08E-33	&	3.08E-33	&	7.83E-24	&	0.0023	\\	\hline
+$f6$	&	0.00098	&	0.00095	&	0.00236	&	0.00769	&	0.0396	\\	\hline
+$f7$	&	21.51	&	4.95	&	14.89	&	21.15	&	33.49	\\	\hline
+$f8$	&	2741.46	&	845.7	&	2628.6	&	2066.33	&	2125.22	\\	\hline
+$f9$	&	5.97	&	1.78E-15	&	1.78E-15	&	2.08E-08	&	13.77	\\	\hline
+$f10$	&	3.55E-15	&	3.55E-15	&	3.55E-15	&	3.58E-11	&	0.0071	\\	\hline
+$f11$	&	2.22E-16	&	1.11E-16	&	1.11E-16	&	1.11E-16	&	0.017	\\	\hline
+$f12$	&	1.57E-32	&	1.57E-32	&	1.50E-32	&	2.99E-22	&	6.49E-05	\\	\hline
+$f13$	&	1.35E-32	&	1.35E-32	&	1.35E-32	&	1.14E-20	&	0.0011	\\	\hline
+$f14$	&	17.57	&	12.64	&	13.73	&	24.73	&	637.85	\\	\hline
+$f15$	&	0.025	&	0.0074	&	0.0099	&	0.0097	&	1.379	\\	\hline
+$f16$	&	20.79	&	20.89	&	20.99	&	21.02	&	20.96	\\	\hline
+$f17$	&	10.95	&	1.99	&	1.77E-15	&	1.19E-10	&	14.14	\\	\hline
+$f18$	&	56.13	&	82.22	&	60.51	&	119.56	&	220.79	\\	\hline
+$f19$	&	30.44	&	31.73	&	33.22	&	31.15	&	35.28	\\	\hline
+$f20$	&	5820.31	&	13895.37	&	43831.75	&	63278.12	&	111698.46	\\	\hline
+
+\end{tabular}
+\end{center}
+\footnotesize Average over 50 independent runs, with 20 benchmark functions in total, this table shows average best results of JADE calculate in 5000 iterations.
+\end{table*}
+
+\begin{table*}[!ht]
+\renewcommand{\arraystretch}{0.8}
+\caption{Population Sensitivity of JADE by experiment}
+\label{outcome}
+\begin{center}
+\begin{tabular}{|l|c|c| c|c |c|}
+
+\hline
+\multicolumn{1}{|c|}{Function}
+&\multicolumn{1}{c|}{POP:30}
+&\multicolumn{1}{c|}{POP:50}
+&\multicolumn{1}{c}{POP:100}
+&\multicolumn{1}{|c}{POP:300}
+&\multicolumn{1}{c|}{POP:1000}     \\
+\hline
+$f1$	&	8.08E-07	&	7.28E-07	&	9.74E-07	&	9.49E-07	&	8.83E-07	\\	\hline
+$f2$	&	9.85E-07	&	9.66E-07	&	9.36E-07	&	8.57E-07	&	9.79E-07	\\	\hline
+$f3$	&	9.97E-07	&	9.53E-07	&	9.55E-07	&	9.10E-07	&	3.26E-06	\\	\hline
+$f4$	&	9.96E-07	&	9.96E-07	&	9.61E-07	&	7.63E-07	&	9.49E-07	\\	\hline
+$f5$	&	0	&	0	&	0	&	0	&	1.11E-16	\\	\hline
+$f6$	&	0.0071	&	0.0065	&	0.0091	&	0.0059	&	0.0095	\\	\hline
+$f7$	&	9.95E-07	&	9.78E-07	&	7.47E-07	&	9.94E-07	&	7.799	\\	\hline
+$f8$	&	236.88	&	118.44	&	0.0092	&	0.0099	&	42.56	\\	\hline
+$f9$	&	8.04E-07	&	9.86E-07	&	9.43E-07	&	9.95E-07	&	10.42	\\	\hline
+$f10$	&	9.97E-07	&	8.69E-07	&	9.63E-07	&	8.64E-07	&	9.85E-07	\\	\hline
+$f11$	&	8.95E-07	&	8.29E-07	&	9.71E-07	&	9.06E-07	&	9.11E-07	\\	\hline
+$f12$	&	9.56E-07	&	9.77E-07	&	9.75E-07	&	7.72E-07	&	9.86E-07	\\	\hline
+$f13$	&	8.45E-07	&	8.89E-07	&	8.48E-07	&	9.90E-07	&	8.40E-07	\\	\hline
+$f14$	&	0.0099	&	0.0094	&	0.0099	&	0.0089	&	13.94	\\	\hline
+$f15$	&	0.0369	&	0.0246	&	0.0095	&	0.0096	&	0.0084	\\	\hline
+$f16$	&	20.97	&	20.91	&	20.9	&	20.98	&	20.95	\\	\hline
+$f17$	&	0.0094	&	0.0083	&	0.0091	&	0.00913	&	10.47	\\	\hline
+$f18$	&	44.78	&	48.77	&	26.34	&	37.93	&	84.57	\\	\hline
+$f19$	&	28.33	&	24.74	&	24.22	&	27.16	&	39.71	\\	\hline
+$f20$	&	2304.9	&	2319.4	&	14037.4	&	28162.28	&	70757.9	\\	\hline
+
+
+\end{tabular}
+\end{center}
+\footnotesize Average over 50 independent runs, with 20 benchmark functions in total, this table shows acceptable results of JADE calculate in 5000 iterations.
+\end{table*}
+
+
+
+
+\begin{table*}[!ht]
+\renewcommand{\arraystretch}{0.8}
+\caption{Population Sensitivity of Niching Boltzmann DE by experiment}
+\label{outcome}
+\begin{center}
+\begin{tabular}{|l|c|c|c|c|c|}
+
+\hline
+\multicolumn{1}{|c|}{Function}
+&\multicolumn{1}{c|}{POP:30}
+&\multicolumn{1}{c|}{POP:50}
+&\multicolumn{1}{c}{POP:100}
+&\multicolumn{1}{|c}{POP:300}
+&\multicolumn{1}{c|}{POP:1000}     \\
+\hline
+$f1$	&	1.11E-38	&	1.18E-38	&	1.01E-38	&	1.09E-38	&	1.35E-38	\\	\hline
+$f2$	&	1E-38	&	1.06E-38	&	1.17E-38	&	1.03E-38	&	1E-38	\\	\hline
+$f3$	&	5.55	&	4.93	&	0.25926	&	0.102	&	0.112	\\	\hline
+$f4$	&	0.0057	&	0.0000457	&	0.000000479	&	0.00000121	&	3.6649E-07	\\	\hline
+$f5$	&	6.03E-15	&	7.21E-16	&	7.33E-16	&	5.64E-16	&	4.7E-16	\\	\hline
+$f6$	&	0.0018	&	0.0039	&	0.00204	&	0.0023	&	0.0025	\\	\hline
+$f7$	&	23.65	&	18.73	&	14.31	&	15.76	&	15.39	\\	\hline
+$f8$	&	517.1	&	643.4	&	718.6	&	956.04	&	777.88	\\	\hline
+$f9$	&	12.93	&	1.99	&	1.78E-15	&	1.77E-15	&	3.55E-15	\\	\hline
+$f10$	&	1.42E-14	&	3.55E-15	&	3.55E-15	&	3.55E-15	&	3.55E-15	\\	\hline
+$f11$	&	1.11E-16	&	1.11E-16	&	1.11E-16	&	1.11E-16	&	1.11E-16	\\	\hline
+$f12$	&	7.69E-17	&	1.43E-17	&	1.08E-17	&	1.18E-17	&	2.39E-17	\\	\hline
+$f13$	&	9.49E-16	&	2.73E-16	&	3.8E-16	&	1.56E-16	&	2.88E-16	\\	\hline
+$f14$	&	9.95	&	3.55	&	17.76	&	16.81	&	13.97	\\	\hline
+$f15$	&	0.015	&	0.0000127	&	2.41E-09	&	1.94E-09	&	0.00986	\\	\hline
+$f16$	&	20.77	&	20.82	&	20.91	&	20.97	&	20.97	\\	\hline
+$f17$	&	12.93	&	4.97	&	1.85E-12	&	4.51E-12	&	4.76E-12	\\	\hline
+$f18$	&	92.53	&	53.72	&	52.73	&	52.73	&	49.75	\\	\hline
+$f19$	&	19.01	&	17.46	&	10.84	&	10.01	&	14.13	\\	\hline
+$f20$	&	2013.77	&	3915.04	&	4741.55	&	2663.6	&	2011.09	\\	\hline
+
+\end{tabular}
+\end{center}
+\footnotesize Average over 50 independent runs, with 20 benchmark functions in total, this table shows average best results of JADE calculate in 5000 iterations.
+\end{table*}
+
+For a better comparison, we put the conventional DE and niching Boltzman DE together for a clearer illusion.
+
+
+\begin{table*}[!ht]
+\renewcommand{\arraystretch}{0.8}
+\caption{Population Sensitivity of Niching Boltzmann DE by experiment}
+\label{outcome}
+\begin{center}
+\begin{tabular}{|l|c|c|c|c|c|}
+
+\hline
+\multicolumn{1}{|c|}{Function}
+&\multicolumn{1}{c|}{POP:30}
+&\multicolumn{1}{c|}{POP:50}
+&\multicolumn{1}{c}{POP:100}
+&\multicolumn{1}{|c}{POP:300}
+&\multicolumn{1}{c|}{POP:1000}     \\
+\hline
+$f1$	&	1.11E-38	&	1.18E-38	&	1.01E-38	&	1.09E-38	&	1.35E-38	\\	\hline
+$f2$	&	1E-38	&	1.06E-38	&	1.17E-38	&	1.03E-38	&	1E-38	\\	\hline
+$f3$	&	5.55	&	4.93	&	0.25926	&	0.102	&	0.112	\\	\hline
+$f4$	&	0.0057	&	0.0000457	&	0.000000479	&	0.00000121	&	3.6649E-07	\\	\hline
+$f5$	&	6.03E-15	&	7.21E-16	&	7.33E-16	&	5.64E-16	&	4.7E-16	\\	\hline
+$f6$	&	0.0018	&	0.0039	&	0.00204	&	0.0023	&	0.0025	\\	\hline
+$f7$	&	23.65	&	18.73	&	14.31	&	15.76	&	15.39	\\	\hline
+$f8$	&	517.1	&	643.4	&	718.6	&	956.04	&	777.88	\\	\hline
+$f9$	&	12.93	&	1.99	&	1.78E-15	&	1.77E-15	&	3.55E-15	\\	\hline
+$f10$	&	1.42E-14	&	3.55E-15	&	3.55E-15	&	3.55E-15	&	3.55E-15	\\	\hline
+$f11$	&	1.11E-16	&	1.11E-16	&	1.11E-16	&	1.11E-16	&	1.11E-16	\\	\hline
+$f12$	&	7.69E-17	&	1.43E-17	&	1.08E-17	&	1.18E-17	&	2.39E-17	\\	\hline
+$f13$	&	9.49E-16	&	2.73E-16	&	3.8E-16	&	1.56E-16	&	2.88E-16	\\	\hline
+$f14$	&	9.95	&	3.55	&	17.76	&	16.81	&	13.97	\\	\hline
+$f15$	&	0.015	&	0.0000127	&	2.41E-09	&	1.94E-09	&	0.00986	\\	\hline
+$f16$	&	20.77	&	20.82	&	20.91	&	20.97	&	20.97	\\	\hline
+$f17$	&	12.93	&	4.97	&	1.85E-12	&	4.51E-12	&	4.76E-12	\\	\hline
+$f18$	&	92.53	&	53.72	&	52.73	&	52.73	&	49.75	\\	\hline
+$f19$	&	19.01	&	17.46	&	10.84	&	10.01	&	14.13	\\	\hline
+$f20$	&	2013.77	&	3915.04	&	4741.55	&	2663.6	&	2011.09	\\	\hline
+
+\end{tabular}
+\end{center}
+\footnotesize Average over 50 independent runs, with 20 benchmark functions in total, this table shows average best results of JADE calculate in 5000 iterations.
+\end{table*}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Niching two layer DE with slef-adaptive DE}
+Table \ref{DE} testify the performance of DE is sensitive to the choice of control parameters. For all those 20 benchmark functions, the success rate by fixed control parameters varies from different functions.
+\begin{table}[!h]
+ \renewcommand{\arraystretch}{0.6}
+\caption{Experiment Results with DE in fixed F, CR}
+\begin{center}\begin{tabular}{|l|c c c c c c|c|}
+\hline
+\multicolumn{1}{|c|}{}
+& \multicolumn{1}{c}{0101}
+& \multicolumn{1}{c}{0503}
+& \multicolumn{1}{c}{0505}
+& \multicolumn{1}{c}{0509}
+& \multicolumn{1}{c}{0901}
+& \multicolumn{1}{c}{0909}
+& \multicolumn{1}{|c|}{TLDE}\\
+ \hline
+$number of bests$ & 0& 3 &5 &2 &4 &1 &14\\
+$success rate$ &46.0\% &69.5\% &69.8\% &60.0\% &56.7\% &50.3\% &72.3\%\\ \hline
+\end{tabular}
+\label{DE}
+\end{center}
+\end{table}
+
+Considering the commonly used parameter settings, we choose $(F,CR)$ as (0.1,0.1), (0.5,0.3), (0.5,0.5), (0.5,0.9), (0.9,0.1) and (0.9,0.9) to investigate the influence of DE parameters. In fairness, we compared to the proposed two-layer structured parameter learning DE without niching procedure, due to the parameters are the only part of adjustment. In this table, we simply show the number of best results and success rate among twenty functions after statistics. For conventional DE, results are not surprisingly vary from different parameters, while TLDE with self-learning parameters shows a significant improvement.
+
+\begin{table*}[!ht]
+\renewcommand{\arraystretch}{0.53}
+\caption{experimental results of Niching Two-Layer DE with different parameter control methods for selected benchmark functions}
+\label{outcome}
+\begin{center}
+\begin{tabular}{|ll|c c c|c c|}
+
+\hline
+\multicolumn{2}{|c|}{Function}
+&\multicolumn{1}{c}{JADE}
+&\multicolumn{1}{c}{jDE}
+&\multicolumn{1}{c}{SDE}
+&\multicolumn{1}{|c}{TLDE}
+&\multicolumn{1}{c|}{NTLDE}     \\
+%\multicolumn{1}{c|}{\multirow{2}{*}{}}
+%&\multicolumn{1}{c}{mean}
+%& \multicolumn{1}{c}{std}
+%&\multicolumn{1}{|c}{mean}
+%& \multicolumn{1}{c}{std}
+%&\multicolumn{1}{|c}{mean}
+%& \multicolumn{1}{c}{std}
+%&\multicolumn{1}{|c}{mean}
+%& \multicolumn{1}{c}{std}
+%&\multicolumn{1}{|c}{mean}
+%& \multicolumn{1}{c}{std}
+\hline
+$f1$	&	$mean$	&	9.5747E-176	&	1.12324E-71	&	7.08806E-65	 &	3.43445E-85	&	 1.88516E-97	\\	
+	&	$std$	&	0	&	1.56921E-71	&	1.72457E-64	&	 4.45155E-85	&	3.40189E-97	\\	 \hline
+$f2$	&	$mean$	&	2.04000E-39	&	2.93095E-41	&	1.53133E-38	 &	\textbf{1.54301E-48}	&	 \textbf{6.86622E-56}	\\	
+	&	$std$	&	7.38514E-39	&	1.21711E-41	&	3.57502E-38	&	 1.04599E-48	&	 7.7398E-56	\\	\hline
+$f3$	&	$mean$	&	\textbf{6.60117E-70}	&	1.30181E-07	&	 7.37197E-09	&	6.04986E-08	&	 \textbf{2.12986E-17}	\\	
+	&	$std$	&	1.3709E-69	&	5.02363E-07	&	1.18436E-08	&	 4.24645E-08	&	 2.99457E-17	\\	\hline
+$f4$	&	$mean$	&	\textbf{1.91456E-90}	&	0.001073383	&	 634.1286944	&	1.123664137	&	 \textbf{1.26035E-07}	\\	
+	&	$std$	&	6.44987E-90	&	0.001130412	&	460.6213902	&	 0.731622424	&	 1.31483E-07	\\	\hline
+$f5$	&	$mean$	&	0	&	0	&	0	&	0	&	0	\\	
+	&	$std$	&	0	&	0	&	0	&	0	&	0	\\	\hline
+$f6$	&	$mean$	&	\textbf{0.000420116}	&	0.002599212	&	 0.003565094	&	0.007139964	&	 \textbf{0.001872842}	\\	
+	&	$std$	&	0.00018554	&	0.000477625	&	0.000680896	&	 0.001708176	&	 0.000518219	\\	\hline
+$f7$	&	$mean$	&	0	&	0.019385439	&	6.440664692	&	 4.10142E-06	&	3.82834E-07	 \\	
+	&	$std$	&	0	&	0.01445572	&	1.767738152	&	 7.14615E-06	&	4.22734E-07	\\	 \hline
+$f8$	&	$mean$	&	7.896270801	&	7.896270801	&	0.000381827	 &	\textbf{0.000381827}	&	 \textbf{0.000381827}	\\	
+	&	$std$	&	30.5806465	&	30.5806465	&	3.82746E-12	&	 1.12226E-19	&	0	\\	 \hline
+$f9$	&	$mean$	&	0	&	0	&	0.066330604	&	0	&	0	 \\	
+	&	$std$	&	0	&	0	&	0.256897324	&	0	&	0	\\	 \hline
+$f10$	&	$mean$	&	3.55271E-15	&	3.55271E-15	&	4.02641E-15	 &	5.21065E-15	&	 3.55271E-15	\\	
+	&	$std$	&	1.79507E-21	&	4.08274E-31	&	1.25008E-15	&	 1.83461E-15	&	 4.08274E-31	\\	\hline
+$f11$	&	$mean$	&	0	&	0	&	0	&	0	&	0	\\	
+	&	$std$	&	0	&	0	&	0	&	0	&	0	\\	\hline
+$f12$	&	$mean$	&	1.57054E-32	&	1.57054E-32	&	1.57054E-32	 &	1.57054E-32	&	 1.57054E-32	\\	
+	&	$std$	&	2.32839E-38	&	2.83297E-48	&	1.23207E-38	&	 2.83297E-48	&	 2.83297E-48	\\	\hline
+$f13$	&	$mean$	&	1.34978E-32	&	1.34978E-32	&	1.34978E-32	 &	1.34978E-32	&	 1.34978E-32	\\	
+	&	$std$	&	1.85636E-38	&	2.83297E-48	&	9.82291E-39	&	 2.83297E-48	&	 2.83297E-48	\\	\hline
+$f14$	&	$mean$	&	17.70968785	&	0.669693725	&	12.24961691	 &	\textbf{0.000280592}	&	 \textbf{0.002311603}	\\	
+	&	$std$	&	37.08245913	&	1.414356385	&	16.33148722	&	 0.000525148	&	 0.007928373	\\	\hline
+$f15$	&	$mean$	&	0.000821399	&	0.001971457	&	0.000657152	 &	\textbf{0.000657152}	&	 \textbf{1.33227E-16}	\\	
+	&	$std$	&	0.003181266	&	0.004081304	&	0.00254514	&	 0.00254514	&3.30945E-16	\\	\hline
+$f16$	&	$mean$	&	20.91779262	&	20.91489385	&	20.92738663	 &	20.90652409	&	 20.1196963	\\	
+	&	$std$	&	0.057436248	&	0.052519767	&	0.048927811	&	 0.037862517	&	 0.11132629	\\	\hline
+$f17$	&	$mean$	&	0	&	0	&	0.132661208	&	0	&	0	 \\	
+	&	$std$	&	0	&	0	&	0.35009204	&	0	&	0	\\	 \hline
+$f18$	&	$mean$	&	\textbf{22.11378903}	&	 \textbf{35.76486345}	&	139.2023223	&	47.11462041	&	 44.79645601	\\	
+	&	$std$	&	5.948578981	&	10.41515826	&	16.89396392	&	 8.516641994	&	 10.93542304	\\	\hline
+$f19$	&	$mean$	&	25.07342387	&	\textbf{12.87762592}	&	 33.53525092	&	23.03053569	&	 \textbf{9.688993264}	\\	
+	&	$std$	&	1.51756617	&	5.200141785	&	1.476459176	&	 2.013521791	&	 3.972020795	\\	\hline
+$f20$	&	$mean$	&	3057.418347	&	2048.220986	&	25636.09032	 &	\textbf{1548.603555}	&	 \textbf{997.1170613}	\\	
+	&	$std$	&	2449.695545	&	1781.331182	&	26155.62157	&	 1854.102311	&	 1155.611716	\\	\hline
+
+\end{tabular}
+\end{center}
+\footnotesize Average over 50 independent runs, with 20 benchmark functions in total, this table shows different results of NTLDE with other methods, while other results of NTLDE are as good as the best results of JADE, jDE, SDE, TLDE.
+\end{table*}
+In order to confirm the proposed method is extensive comparable, we compare the proposed method with some improved DE algorithms that use adaptive or self-adaptive parameter strategies. Specifically, the JADE algorithm proposed by Zhang in 2009\cite{cit:14}, the jDE algorithm proposed by Brest in 2006\cite{cit:16}, and the SDE algorithm proposed by Salman in 2007\cite{cit:12}. Moreover, we use the same population size(NP) as 100, also the same maximum function evolution(FEs) as $5.0\times 10^5$ for a fair comparison in solution quality.
+
+Table \ref{outcome} shows mean value and standard deviation of benchmark functions calculated by JADE, jDE, SDE, TLDE and NTLDE algorithm. Some results such as $f_1$, $f_5$, $f_9-f_{13}$, $f_{16}$, $f_{17}$ are omitted from the table, which because the results of these functions calculate by algorithms upon are similar to each other. Even there exist difference, our proposed method NTLDE is as good as the best result of other algorithms.
+
+Since the population is randomly generated at the beginning, all twenty benchmark functions runs over 50 times by compared algorithms independently. In this table, we put the best two algorithms with best results in bold font. By observing the results table \ref{outcome} listed, we can find out that although the result of NTLDE is not as precise as JADE algorithm for unimodal functions $f_1-f_6$, but the average outcomes are still within the acceptable range. For multimodal function $f_8$, the proposed method get the best acceptable result. The advantages of proposed method are obvious when calculate $f_{14}-f_{20}$, which are complex shifted and rotated functions. Moreover, it's worth noticed that the two-layer structured DE has better performance when add with clearing procedure, especially in $f_4$, $f_{15}$, $f_{19}$ and $f_{20}$. This better performance shows smaller average outcomes and smaller standard deviation, which confirms that the system is more stable as expected.
+
+\begin{table}[!ht]
+ \renewcommand{\arraystretch}{0.6}
+\caption{Acceptable Success Rate count by over 50 independent runs}
+\begin{center}\begin{tabular}{l|c c c c c}
+\hline
+\multicolumn{1}{c}{Function}
+& \multicolumn{1}{c}{JADE}
+& \multicolumn{1}{c}{jDE}
+& \multicolumn{1}{c}{SDE}
+& \multicolumn{1}{c}{TLDE}
+& \multicolumn{1}{c}{NTLDE}\\
+ \hline
+$f1$	&100.00\%	&100.00\%	&100.00\%&	100.00\%	&100.00\%\\
+$f2$	&100.00\%	&100.00\%	&100.00\%&	100.00\%	&100.00\%\\
+$f3$	&100.00\%	&93.33\%	&100.00\%&	100.00\%	&100.00\%\\
+$f4$	&100.00\%	&0.00\%	&0.00\%&	0.00\%	&100.00\%\\
+$f5$	&100.00\%	&100.00\%	&100.00\%&	100.00\%	&100.00\%\\
+$f6$	&100.00\%	&100.00\%	&100.00\%&	100.00\%	&100.00\%\\
+\hline
+$f7$	&100.00\%	&0.00\%	&0.00\%	&40.00\%	&86.67\%\\
+$f8$	&93.33\%	&93.33\%	&93.33\%	&100.00\%	&100.00\%\\
+$f9$	&100.00\%	&100.00\%	&93.33\%	&100.00\%	&100.00\%\\
+$f10$	&100.00\%	&100.00\%	&100.00\%&	100.00\%	&100.00\%\\
+$f11$	&100.00\%	&100.00\%	&100.00\%&	100.00\%	&100.00\%\\
+$f12$	&100.00\%	&100.00\%	&100.00\%&	100.00\%	&100.00\%\\
+$f13$	&100.00\%	&100.00\%	&100.00\%&	100.00\%&100.00\%\\
+\hline
+$f14$	&66.67\%	&6.67\%	&0.00\%	&100.00\%	&93.33\%\\
+$f15$	&93.33\%	&100.00\%	&100.00\%&	100.00\%	&100.00\%\\
+$f16$	&0.00\%	&0.00\%	&0.00\%	&0.00\%&	0.00\%\\
+$f17$	&100.00\%	&100.00\%	&86.67\%	&100.00\%	&100.00\%\\
+$f18$	&0.00\%	&0.00\%	&0.00\%	&0.00\%	&0.00\%\\
+$f19$	&0.00\%	&0.00\%	&0.00\%	&0.00\%	&0.00\%\\
+$f20$	&0.00\%	&0.00\%	&0.00\%	&6.67\%	&6.67\%\\
+\hline
+$average$	&77.67\%	&64.67\%	&63.67\%	&72.33\%	 &79.33\%\\ \hline
+\end{tabular}
+\label{succrate}
+\end{center}
+\footnotesize The $f_{5}$ acceptable error is $0$, while $f_{6}$, $f_{8}$ and $f_{14}-f_{19}$ acceptable error is $10e^{-2}$, others are all $10e^{-6}$.
+\end{table}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Conclusion} \label{ch6}
+
+Parameter learning is beneficial for performance improvement of complex real-world applications. This paper presents an enhanced niching Two-Layered DE with self-adaptive control parameters, which eliminates the time consuming trial and error procedure for finding perfect parameters. A clearing procedure of niching method is proposed to maintain the diversity of the population, and prevent the premature convergence to local optimal.
+
+The proposed modification is tested on commonly used benchmark problems for unconstrained optimization. Empirical results indicates that the proposed niching mutation strategy with two-layer DE structured parameter control is competitive and very promising. It exhibits a robust and stable behavior during the optimal-searching procedure.
+
+Future target is to extend current work and improve this system, the entry point may start from different mutation strategies instead of the original ``DE/rand/1/bin'' we applied in this paper.
+
+
+%
+%%
+%\begin{thebibliography}{99}
+%\addcontentsline{toc}{chapter}{Bibliography}
+%%
+%\bibitem{cit1}
+%Janez Brest, Saso Greiner, Borko Boskovic, Marjan Mernik, and Viljem Zumer.
+%\newblock {Self-adapting control parameters in differential evolution: A
+%  comparative study on numerical benchmark problems.}
+%\newblock {\em Evolutionary Computation, IEEE Transactions on}, 10\penalty0
+%  (6):\penalty0 646--657, 2006.
+%
+%\bibitem{cit2}
+%Janez Brest, Ales Zamuda, Borko Boskovic, Mirjam~Sepesy Maucec, and Viljem
+%  Zumer.
+%\newblock {Dynamic optimization using self-adaptive differential evolution.}
+%\newblock In{\em Evolutionary Computation, 2009. CEC'09. IEEE Congress on},
+%  pages 415--422. IEEE, 2009.
+%
+%\bibitem{cit3}
+%Benhui Chen and Jinglu Hu.
+%\newblock {An adaptive niching eda based on clustering analysis.}
+%\newblock In {\em Evolutionary Computation (CEC), 2010 IEEE Congress on},
+%  pages 1--7. IEEE, 2010.
+%
+%\bibitem{cit4}
+%Swagatam Das and Ponnuthurai~Nagaratnam Suganthan.
+%\newblock {Differential evolution: A survey of the state-of-the-art.}
+%\newblock {\em Evolutionary Computation, IEEE Transactions on}, 15\penalty0
+%  (1):\penalty0 4--31, 2011.
+%
+%\bibitem{cit5}
+%Kenneth~Alan De~Jong.
+%\newblock {Analysis of the behavior of a class of genetic adaptive systems.}
+%\newblock 1975.
+%
+%\bibitem{cit6}
+%Agosten~E Eiben and James~E Smith.
+%\newblock {\em Introduction to evolutionary computing}, volume~2.
+%\newblock {Springer Berlin}, 2010.
+%
+%\bibitem{cit7}
+%Michael~G Epitropakis, Vassilis~P Plagianakos, and Michael~N Vrahatis.
+%\newblock {Finding multiple global optima exploiting differential evolution's
+%  niching capability.}
+%\newblock In {\em Differential Evolution (SDE), 2011 IEEE Symposium on}, pages
+%  1--8. IEEE, 2011.
+%
+%\bibitem{cit8}
+%Michael~G Epitropakis, Xiaodong Li, and Edmund~K Burke.
+%\newblock {A dynamic archive niching differential evolution algorithm for
+%  multimodal optimization.}
+%\newblock In {\em Evolutionary Computation (CEC), 2013 IEEE Congress on},
+%  pages 79--86. IEEE, 2013.
+%
+%\bibitem{cit9}
+%Roger G{\"a}mperle, Sibylle~D M{\"u}ller, and Petros Koumoutsakos.
+%\newblock {A parameter study for differential evolution.}
+%\newblock {\em Advances in intelligent systems, fuzzy systems, evolutionary
+%  computation}, 10:\penalty0 293--298, 2002.
+%
+%\bibitem{cit10}
+%Cheol-Gyun Lee, Dong-Hyeok Cho, and Hyun-Kyo Jung.
+%\newblock {Niching genetic algorithm with restricted competition selection for
+%  multimodal function optimization.}
+%\newblock {\em Magnetics, IEEE Transactions on}, 35\penalty0 (3):\penalty0
+%  1722--1725, 1999.
+%
+%\bibitem{cit11}
+%Jian-Ping Li, Marton~E Balazs, Geoffrey~T Parks, and P~John Clarkson.
+%\newblock {A species conserving genetic algorithm for multimodal function
+%  optimization.}
+%\newblock {\em Evolutionary computation}, 10\penalty0 (3):\penalty0 207--234,
+%  2002.
+%
+%\bibitem{cit12}
+%Junhong Liu and Jouni Lampinen.
+%\newblock {On setting the control parameter of the differential evolution
+%  method.}
+%\newblock In{\em Proc. 8th int. conf. soft computing (MENDEL 2002)}, pages
+%  11--18, 2002.
+%
+%\bibitem{cit13}
+%Junhong Liu and Jouni Lampinen.
+%\newblock {A fuzzy adaptive differential evolution algorithm.}
+%\newblock {\em Soft Computing}, 9\penalty0 (6):\penalty0 448--462, 2005.
+%
+%\bibitem{cit14}
+%Zi-fa Liu and Jian-hua Zhang.
+%\newblock {Optimal planning of substation locating and sizing based on refined
+%  multi-team pso algorithm.}
+%\newblock In {\em Zhongguo Dianji Gongcheng Xuebao(Proceedings of the Chinese
+%  Society of Electrical Engineering)}, volume~27, pages 105--111, 2007.
+%
+%\bibitem{cit15}
+%Samir~W Mahfoud.
+%\newblock {Niching methods for genetic algorithms.}
+%\newblock {\em Urbana}, 51\penalty0 (95001), 1995.
+%
+%\bibitem{cit16}
+%Mahamed~GH Omran, Ayed Salman, and Andries~P Engelbrecht.
+%\newblock {Self-adaptive differential evolution.}
+%\newblock In {\em Computational intelligence and security}, pages 192--199.
+%  Springer, 2005.
+%
+%\bibitem{cit17}
+%Alain Petrowski.
+%\newblock {A clearing procedure as a niching method for genetic algorithms.}
+%\newblock In {\em Evolutionary Computation, 1996., Proceedings of IEEE
+%  International Conference on}, pages 798--803. IEEE, 1996.
+%
+%\bibitem{cit18}
+%Bin Qian, Ling Wang, De-Xian Huang, and Xiong Wang.
+%\newblock {Scheduling multi-objective job shops using a memetic algorithm based
+%  on differential evolution.}
+%\newblock {\em The International Journal of Advanced Manufacturing
+%  Technology}, 35\penalty0 (9-10):\penalty0 1014--1027, 2008.
+%
+%\bibitem{cit19}
+%A~Kai Qin, Vicky~Ling Huang, and Ponnuthurai~N Suganthan.
+%\newblock {Differential evolution algorithm with strategy adaptation for global
+%  numerical optimization.}
+%\newblock {\em Evolutionary Computation, IEEE Transactions on}, 13\penalty0
+%  (2):\penalty0 398--417, 2009.
+%
+%\bibitem{cit20}
+%Jani Ronkkonen, Saku Kukkonen, and Kenneth~V Price.
+%\newblock {Real-parameter optimization with differential evolution.}
+%\newblock In {\em Evolutionary Computation, 2005. The 2005 IEEE Congress on},
+%  volume~1, pages 506--513. IEEE, 2005.
+%
+%\bibitem{cit21}
+%Ayed Salman, Andries~P Engelbrecht, and Mahamed~GH Omran.
+%\newblock {Empirical analysis of self-adaptive differential evolution.}
+%\newblock {\em European Journal of operational research}, 183\penalty0
+%  (2):\penalty0 785--804, 2007.
+%
+%\bibitem{cit22}
+%Bruno Sareni and Laurent Krahenbuhl.
+%\newblock {Fitness sharing and niching methods revisited.}
+%\newblock {\em Evolutionary Computation, IEEE Transactions on}, 2\penalty0
+%  (3):\penalty0 97--106, 1998.
+%
+%\bibitem{cit23}
+%Rainer Storn and Kenneth Price.
+%\newblock {Differential evolution--a simple and efficient heuristic for global
+%  optimization over continuous spaces.}
+%\newblock {\em Journal of global optimization}, 11\penalty0 (4):\penalty0
+%  341--359, 1997.
+%
+%\bibitem{cit24}
+%Ponnuthurai~N Suganthan, Nikolaus Hansen, Jing~J Liang, Kalyanmoy Deb, YP~Chen,
+%  Anne Auger, and S~Tiwari.
+%\newblock {Problem definitions and evaluation criteria for the cec 2005 special
+%  session on real-parameter optimization.}
+%\newblock {\em KanGAL Report}, 2005005, 2005.
+%
+%\bibitem{cit25}
+%Jason Teo.
+%\newblock {Exploring dynamic self-adaptive populations in differential
+%  evolution.}
+%\newblock {\em Soft Computing}, 10\penalty0 (8):\penalty0 673--686, 2006.
+%
+%\bibitem{cit26}
+%Xin Yao, Yong Liu, and Guangming Lin.
+%\newblock {Evolutionary programming made faster.}
+%\newblock {\em Evolutionary Computation, IEEE Transactions on}, 3\penalty0
+%  (2):\penalty0 82--102, 1999.
+%
+%\bibitem{cit27}
+%Jingqiao Zhang and Arthur~C Sanderson.
+%\newblock {Jade: adaptive differential evolution with optional external archive.}
+%\newblock {\em Evolutionary Computation, IEEE Transactions on}, 13\penalty0
+%  (5):\penalty0 945--958, 2009.
+%
+%\bibitem{cit28}
+%Shi-Zheng Zhao, Ponnuthurai~Nagaratnam Suganthan, and Swagatam Das.
+%\newblock {Self-adaptive differential evolution with multi-trajectory search for
+%  large-scale optimization.}
+%\newblock {\em Soft Computing}, 15\penalty0 (11):\penalty0 2175--2185, 2011.
+%
+%\end{thebibliography}
+
+\nocite{*}
+\bibliographystyle{amsplain}
+\bibliography{LUOreference}
+
+\end{document}
