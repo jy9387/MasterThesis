@@ -34,5 +34,9 @@
 \BOOKMARK [1][-]{section.4.2}{4.2 Object Boundary Detection in Natural Images}{chapter.4}% 34
 \BOOKMARK [2][-]{subsection.4.2.1}{4.2.1 Metrics}{section.4.2}% 35
 \BOOKMARK [2][-]{subsection.4.2.2}{4.2.2 PASCAL VOC Contour Dataset}{section.4.2}% 36
-\BOOKMARK [0][-]{chapter.5}{5 Conclusions}{}% 37
-\BOOKMARK [0][-]{section*.19}{Bibliography}{}% 38
+\BOOKMARK [1][-]{section.4.3}{4.3 Control Experiments for Model Interpretation}{chapter.4}% 37
+\BOOKMARK [2][-]{subsection.4.3.1}{4.3.1 Evaluations on Cascaded Architecture vs. Single-stage Architecture}{section.4.3}% 38
+\BOOKMARK [2][-]{subsection.4.3.2}{4.3.2 Evaluations on Multi-recursive-input vs. Single-recursive-input}{section.4.3}% 39
+\BOOKMARK [2][-]{subsection.4.3.3}{4.3.3 Evaluations on End-to-end Training vs. Stepwise Self-tuning}{section.4.3}% 40
+\BOOKMARK [0][-]{chapter.5}{5 Conclusions}{}% 41
+\BOOKMARK [0][-]{section*.25}{Bibliography}{}% 42

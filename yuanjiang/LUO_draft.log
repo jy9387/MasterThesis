@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.1.12)  21 JAN 2018 00:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.1.12)  23 JAN 2018 04:13
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1088,7 +1088,16 @@ Package: appendix 2009/09/02 v1.2b extra appendix facilities
 )
 (./LUO_draft.aux
 
-LaTeX Warning: Label `interpretation' multiply defined.
+LaTeX Warning: Label `outcome' multiply defined.
+
+
+LaTeX Warning: Label `outcome' multiply defined.
+
+
+LaTeX Warning: Label `outcome' multiply defined.
+
+
+LaTeX Warning: Label `outcome' multiply defined.
 
 
 LaTeX Warning: Label `outcome' multiply defined.
@@ -1317,51 +1326,24 @@ Package Fancyhdr Warning: \headheight is too small (14.45377pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[2] (./LUO_draft.lof
-
-LaTeX Warning: Citation `vd2d3d' on page iii undefined on input line 10.
-
-
-LaTeX Warning: Citation `isbi12' on page iii undefined on input line 10.
-
-
-LaTeX Warning: Citation `watershed' on page iii undefined on input line 10.
-
-
-LaTeX Warning: Citation `vd2d3d' on page iii undefined on input line 11.
-
-
-Overfull \hbox (15.569pt too wide) in paragraph at lines 11--11
- [][] [][][]\T1/ptm/m/n/12 Precision (rand merge)-recall (rand split) curves on
- Mouse Pir-i-form Cor-tex Dataset[[]]. 
- []
-
-
-LaTeX Warning: Citation `cedn' on page iii undefined on input line 12.
-
-[3
+[2] (./LUO_draft.lof [3
 
 
 
 
 
 ]
-
-LaTeX Warning: Citation `cedn' on page iv undefined on input line 13.
+Overfull \hbox (15.569pt too wide) in paragraph at lines 12--12
+ [][] [][][]\T1/ptm/m/n/12 Precision (rand merge)-recall (rand split) curves on
+ Mouse Pir-i-form Cor-tex Dataset[[]]. 
+ []
 
 )
 \tf@lof=\write7
 \openout7 = `LUO_draft.lof'.
 
  [4] (./LUO_draft.lot
-
-LaTeX Warning: Citation `vd2d3d' on page v undefined on input line 6.
-
-
-LaTeX Warning: Citation `cedn' on page v undefined on input line 7.
-
-
-Overfull \hbox (27.72429pt too wide) in paragraph at lines 7--7
+Overfull \hbox (27.72429pt too wide) in paragraph at lines 8--8
  [][] [][][]\T1/ptm/m/n/12 Object bound-ary de-tec-tion eval-u-a-tion com-par-i
 -son on PAS-CAL VOC Con-tour Dataset[[]]. 
  []
@@ -1383,746 +1365,186 @@ Overfull \hbox (27.72429pt too wide) in paragraph at lines 7--7
 Chapter 1.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <17.28> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 67.
+<object_boundary_vs_local_edge.png, id=339, 1505.625pt x 412.9026pt>
+File: object_boundary_vs_local_edge.png Graphic file (type png)
 
-LaTeX Warning: Citation `???' on page 1 undefined on input line 69.
-
-
-LaTeX Warning: Citation `encoder-decoder' on page 1 undefined on input line 69.
-
-
-
-LaTeX Warning: Citation `edgebox' on page 1 undefined on input line 69.
-
-
-LaTeX Warning: Citation `vd2d3d' on page 1 undefined on input line 69.
-
-
-LaTeX Warning: Citation `fusionnet' on page 1 undefined on input line 69.
-
-
-LaTeX Warning: Citation `unet' on page 1 undefined on input line 69.
-
-
-LaTeX Warning: Citation `canny' on page 1 undefined on input line 71.
-
-
-LaTeX Warning: Citation `sobel' on page 1 undefined on input line 71.
-
-
-LaTeX Warning: Citation `se' on page 1 undefined on input line 71.
-
-
-LaTeX Warning: Citation `deep contour' on page 1 undefined on input line 71.
-
-
-LaTeX Warning: Citation `etc' on page 1 undefined on input line 71.
-
-
-LaTeX Warning: Citation `hed' on page 1 undefined on input line 71.
-
-
-LaTeX Warning: Citation `hed' on page 1 undefined on input line 71.
-
+<use object_boundary_vs_local_edge.png>
+Package pdftex.def Info: object_boundary_vs_local_edge.png used on input line 7
+2.
+(pdftex.def)             Requested size: 426.79134pt x 117.04211pt.
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.72 
+l.79 
       [1
 
 
 
 
-]
-
-LaTeX Warning: Citation `wikipedia' on page 2 undefined on input line 73.
-
-
-LaTeX Warning: Citation `fcn' on page 2 undefined on input line 73.
-
-
-LaTeX Warning: Citation `encoder-decoder' on page 2 undefined on input line 75.
-
-
-
-LaTeX Warning: Citation `hed' on page 2 undefined on input line 77.
-
-
-LaTeX Warning: Citation `m2fcn23' on page 2 undefined on input line 85.
-
-pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has 
-been already used, duplicate ignored
+]pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has
+ been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.86 
-      [2]
-
-LaTeX Warning: Citation `N4' on page 3 undefined on input line 87.
-
-
-LaTeX Warning: Citation `Vd2d3d' on page 3 undefined on input line 87.
-
-
-LaTeX Warning: Citation `fusionnet' on page 3 undefined on input line 87.
-
-
-LaTeX Warning: Citation `etc' on page 3 undefined on input line 87.
-
-
-LaTeX Warning: Citation `m2fcn43' on page 3 undefined on input line 87.
-
-
-LaTeX Warning: Citation `hed' on page 3 undefined on input line 89.
-
-
-LaTeX Warning: Citation `canny' on page 3 undefined on input line 89.
-
-
-LaTeX Warning: Citation `sobel' on page 3 undefined on input line 89.
-
-
-LaTeX Warning: Citation `ets' on page 3 undefined on input line 89.
-
-
-LaTeX Warning: Citation `N4' on page 3 undefined on input line 89.
-
-
-LaTeX Warning: Citation `vd2d3d' on page 3 undefined on input line 89.
-
-
-LaTeX Warning: Citation `etc' on page 3 undefined on input line 89.
-
-
-LaTeX Warning: Citation `piriform' on page 3 undefined on input line 91.
-
-
-LaTeX Warning: Citation `isbi2012' on page 3 undefined on input line 91.
-
-
-LaTeX Warning: Citation `cedn3' on page 3 undefined on input line 94.
-
-
-LaTeX Warning: Citation `cedn41' on page 3 undefined on input line 94.
-
-
-LaTeX Warning: Citation `cedn15' on page 3 undefined on input line 94.
-
-
-LaTeX Warning: Citation `cedn18' on page 3 undefined on input line 94.
-
-
-LaTeX Warning: Citation `bcf' on page 3 undefined on input line 94.
-
-
-LaTeX Warning: Citation `bsp' on page 3 undefined on input line 94.
-
-
-LaTeX Warning: Citation `bcsp' on page 3 undefined on input line 94.
-
-pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has 
-been already used, duplicate ignored
+l.85 
+      [2 <./object_boundary_vs_local_edge.png>]pdfTeX warning (ext4): destinati
+on with the same identifier (name{page.3}) has been already used, duplicate ign
+ored
 <to be read again> 
                    \relax 
-l.95 
-      [3]
-
-LaTeX Warning: Citation `canny' on page 4 undefined on input line 96.
-
-
-LaTeX Warning: Citation `sobel' on page 4 undefined on input line 96.
-
-
-LaTeX Warning: Citation `etc' on page 4 undefined on input line 96.
-
-
-LaTeX Warning: Citation `voc' on page 4 undefined on input line 98.
-
-pdfTeX warning (ext4): destination with the same identifier (name{page.4}) has 
-been already used, duplicate ignored
+l.98 
+      [3]pdfTeX warning (ext4): destination with the same identifier (name{page
+.4}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.105 
-       [4]pdfTeX warning (ext4): destination with the same identifier (name{pag
-e.5}) has been already used, duplicate ignored
+l.111 \section
+              {Organization of the thesis} [4]pdfTeX warning (ext4): destinatio
+n with the same identifier (name{page.5}) has been already used, duplicate igno
+red
 <to be read again> 
                    \relax 
-l.107 \chapter
-              {Related Work} \label{related work} [5]pdfTeX warning (ext4): des
+l.115 \chapter
+              {Related Work} \label{related_work} [5]pdfTeX warning (ext4): des
 tination with the same identifier (name{page.6}) has been already used, duplica
 te ignored
 <to be read again> 
                    \relax 
-l.107 \chapter
-              {Related Work} \label{related work} [6
+l.115 \chapter
+              {Related Work} \label{related_work} [6
 
 ]
 Chapter 2.
-
-LaTeX Warning: Citation `canny' on page 7 undefined on input line 121.
-
-
-LaTeX Warning: Citation `sobel' on page 7 undefined on input line 121.
-
 [7]
-
-LaTeX Warning: Citation `cedn37' on page 8 undefined on input line 123.
-
-
-LaTeX Warning: Citation `3' on page 8 undefined on input line 123.
-
-
-LaTeX Warning: Citation `30' on page 8 undefined on input line 123.
-
-
-LaTeX Warning: Citation `12' on page 8 undefined on input line 123.
-
-
-LaTeX Warning: Citation `sliding window' on page 8 undefined on input line 123.
-
-
-
-LaTeX Warning: Citation `cedn3' on page 8 undefined on input line 123.
-
-
-LaTeX Warning: Citation `se' on page 8 undefined on input line 123.
-
-
-LaTeX Warning: Citation `alexnet' on page 8 undefined on input line 129.
-
-
-LaTeX Warning: Citation `vgg' on page 8 undefined on input line 129.
-
-
-LaTeX Warning: Citation `googlenet' on page 8 undefined on input line 129.
-
-
-LaTeX Warning: Citation `resnet' on page 8 undefined on input line 129.
-
-
-LaTeX Warning: Citation `alexnet' on page 8 undefined on input line 129.
-
-
-LaTeX Warning: Citation `rcnn series' on page 8 undefined on input line 129.
-
-
-LaTeX Warning: Citation `deep mask' on page 8 undefined on input line 129.
-
-
-LaTeX Warning: Citation `deep contour' on page 8 undefined on input line 129.
-
-
-LaTeX Warning: Citation `deep contour23' on page 8 undefined on input line 129.
-
-
-
-LaTeX Warning: Citation `19' on page 8 undefined on input line 129.
-
-[8]
-
-LaTeX Warning: Citation `sketch token' on page 9 undefined on input line 131.
-
-
-LaTeX Warning: Citation `deep contour' on page 9 undefined on input line 131.
-
-
-LaTeX Warning: Citation `deep contour' on page 9 undefined on input line 131.
-
-
-LaTeX Warning: Citation `se' on page 9 undefined on input line 131.
-
-
-LaTeX Warning: Citation `deep contour' on page 9 undefined on input line 131.
-
-
-LaTeX Warning: Citation `fcn' on page 9 undefined on input line 133.
-
-
-LaTeX Warning: Citation `voc2007' on page 9 undefined on input line 133.
-
-
-LaTeX Warning: Citation `2012' on page 9 undefined on input line 133.
-
-[9]
-
-LaTeX Warning: Citation `hed' on page 10 undefined on input line 135.
-
-
-LaTeX Warning: Citation `hed' on page 10 undefined on input line 135.
-
-
-LaTeX Warning: Citation `hed' on page 10 undefined on input line 135.
-
-
-LaTeX Warning: Citation `bsds500' on page 10 undefined on input line 135.
-
-
-LaTeX Warning: Citation `bsds500' on page 10 undefined on input line 135.
-
-
-LaTeX Warning: Citation `deep contour' on page 10 undefined on input line 135.
-
-
-Overfull \hbox (28.57318pt too wide) in paragraph at lines 135--136
+Overfull \hbox (16.76904pt too wide) in paragraph at lines 137--138
+\T1/ptm/m/n/12 ply-ing the deep fea-ture ex-trac-tion for most of the com-puter
+ vi-sion tasks. VGGNet[[]], GoogLeNet[[]]
+ []
+
+[8] [9]
+Overfull \hbox (34.57318pt too wide) in paragraph at lines 143--144
 []\T1/ptm/m/n/12 Features from dif-fer-ent stages of the con-vo-lu-tion neu-ral
  net-works have the multi-scale information[[]].
  []
 
-
-LaTeX Warning: Citation `hed' on page 10 undefined on input line 139.
-
-
-LaTeX Warning: Citation `deep contour' on page 10 undefined on input line 139.
-
-
-LaTeX Warning: Citation `se' on page 10 undefined on input line 139.
-
-
-LaTeX Warning: Citation `gpb' on page 10 undefined on input line 139.
-
-
-LaTeX Warning: Citation `cedn' on page 10 undefined on input line 139.
-
-
-LaTeX Warning: Citation `cedn' on page 10 undefined on input line 139.
-
-
-LaTeX Warning: Citation `vgg' on page 10 undefined on input line 139.
-
-
-LaTeX Warning: Citation `cedn' on page 10 undefined on input line 141.
-
-[10]
-
-LaTeX Warning: Citation `m2fcn23' on page 11 undefined on input line 147.
-
-
-LaTeX Warning: Citation `13' on page 11 undefined on input line 147.
-
-
-LaTeX Warning: Citation `38' on page 11 undefined on input line 147.
-
-
-LaTeX Warning: Citation `m2fcn13' on page 11 undefined on input line 147.
-
-
-LaTeX Warning: Citation `m2fcn19' on page 11 undefined on input line 147.
-
-
-LaTeX Warning: Citation `15' on page 11 undefined on input line 147.
-
-
-LaTeX Warning: Citation `18' on page 11 undefined on input line 147.
-
-
-LaTeX Warning: Citation `31' on page 11 undefined on input line 147.
-
-
-LaTeX Warning: Citation `m2fcn26' on page 11 undefined on input line 147.
-
-
-LaTeX Warning: Citation `40' on page 11 undefined on input line 147.
-
-
-LaTeX Warning: Citation `43' on page 11 undefined on input line 147.
-
-
-LaTeX Warning: Citation `m2fcn' on page 11 undefined on input line 147.
-
-
-LaTeX Warning: Citation `m2fcn8' on page 11 undefined on input line 151.
-
-
-LaTeX Warning: Citation `29' on page 11 undefined on input line 151.
-
-
-LaTeX Warning: Citation `28' on page 11 undefined on input line 151.
-
-
-LaTeX Warning: Citation `11' on page 11 undefined on input line 151.
-
-
-LaTeX Warning: Citation `vd2d3d' on page 11 undefined on input line 151.
-
-
-LaTeX Warning: Citation `m2fcn1' on page 11 undefined on input line 152.
-
-
-LaTeX Warning: Citation `m2fcn8' on page 11 undefined on input line 152.
-
-
-LaTeX Warning: Citation `m2fcn29' on page 11 undefined on input line 152.
-
-
-LaTeX Warning: Citation `resnet' on page 11 undefined on input line 152.
-
-
-LaTeX Warning: Citation `m2fcn28' on page 11 undefined on input line 152.
-
-
-LaTeX Warning: Citation `m2fcn11' on page 11 undefined on input line 152.
-
-[11] <vd2d3d.png, id=331, 1271.952pt x 491.436pt>
+[10] [11] <vd2d3d.png, id=530, 1271.952pt x 491.436pt>
 File: vd2d3d.png Graphic file (type png)
  <use vd2d3d.png>
-Package pdftex.def Info: vd2d3d.png used on input line 159.
+Package pdftex.def Info: vd2d3d.png used on input line 167.
 (pdftex.def)             Requested size: 426.79134pt x 164.89641pt.
-
-
-LaTeX Warning: Citation `m2fcn21' on page 12 undefined on input line 163.
-
-
-LaTeX Warning: Citation `m2fcn21' on page 12 undefined on input line 163.
-
-
-LaTeX Warning: Citation `m2fcn21' on page 12 undefined on input line 163.
-
-
-LaTeX Warning: Citation `m2fcn21' on page 12 undefined on input line 167.
-
-
-LaTeX Warning: Citation `m2fcn21' on page 12 undefined on input line 167.
-
-
-LaTeX Warning: Citation `piriform' on page 12 undefined on input line 167.
-
-
-LaTeX Warning: Citation `isbi2012' on page 12 undefined on input line 167.
 
 [12 <./vd2d3d.png>] [13] [14
 
 ]
 Chapter 3.
-<cascade_structures.png, id=348, 866.7582pt x 613.3314pt>
+<cascade_structures.png, id=553, 866.7582pt x 613.3314pt>
 File: cascade_structures.png Graphic file (type png)
 
 <use cascade_structures.png>
-Package pdftex.def Info: cascade_structures.png used on input line 181.
+Package pdftex.def Info: cascade_structures.png used on input line 189.
 (pdftex.def)             Requested size: 426.79134pt x 302.00432pt.
-
-
-LaTeX Warning: Citation `hed' on page 15 undefined on input line 187.
-
-[15]
-
-LaTeX Warning: Citation `hed' on page 16 undefined on input line 190.
-
-
-LaTeX Warning: Citation `vgg' on page 16 undefined on input line 190.
-
-[16 <./cascade_structures.png>]
-
-LaTeX Warning: Citation `hed' on page 17 undefined on input line 194.
-
-
-LaTeX Warning: Citation `hed' on page 17 undefined on input line 194.
-
-
-LaTeX Warning: Citation `hed' on page 17 undefined on input line 194.
-
-<network.png, id=366, 2049.5772pt x 1535.9784pt>
+ [15] [16 <./cascade_structures.png>]
+<network.png, id=577, 2049.5772pt x 1535.9784pt>
 File: network.png Graphic file (type png)
  <use network.png>
-Package pdftex.def Info: network.png used on input line 199.
+Package pdftex.def Info: network.png used on input line 207.
 (pdftex.def)             Requested size: 426.79134pt x 319.82285pt.
  [17]
 [18 <./network.png>]
 
 Package amsmath Warning: Cannot use `split' here;
-(amsmath)                trying to recover with `aligned' on input line 228.
-
-
-LaTeX Warning: Citation `m2fcn42' on page 19 undefined on input line 231.
+(amsmath)                trying to recover with `aligned' on input line 236.
 
 [19]
 
 Package amsmath Warning: Cannot use `split' here;
-(amsmath)                trying to recover with `aligned' on input line 259.
+(amsmath)                trying to recover with `aligned' on input line 267.
 
-[20] <multi-recursive-input.png, id=401, 1020.81375pt x 864.22874pt>
+[20] <multi-recursive-input.png, id=613, 1020.81375pt x 864.22874pt>
 File: multi-recursive-input.png Graphic file (type png)
 
 <use multi-recursive-input.png>
-Package pdftex.def Info: multi-recursive-input.png used on input line 294.
+Package pdftex.def Info: multi-recursive-input.png used on input line 302.
 (pdftex.def)             Requested size: 426.79134pt x 361.32521pt.
 LaTeX Font Info:    Font shape `T1/ptm/bx/it' in size <14.4> not available
-(Font)              Font shape `T1/ptm/b/it' tried instead on input line 299.
-
-
-LaTeX Warning: Citation `m2fcn13' on page 21 undefined on input line 304.
-
-[21] [22 <./multi-recursive-input.png>]
-<interpretation.png, id=415, 814.242pt x 1050.8058pt>
+(Font)              Font shape `T1/ptm/b/it' tried instead on input line 307.
+ [21] [22 <./multi-recursive-input.png>]
+<interpretation.png, id=629, 814.242pt x 1050.8058pt>
 File: interpretation.png Graphic file (type png)
  <use interpretation.png>
-Package pdftex.def Info: interpretation.png used on input line 313.
+Package pdftex.def Info: interpretation.png used on input line 321.
 (pdftex.def)             Requested size: 426.79134pt x 550.79944pt.
 
 [23] [24 <./interpretation.png>]
 Chapter 4.
-
-LaTeX Warning: Citation `piriform' on page 25 undefined on input line 324.
-
-
-LaTeX Warning: Citation `isbi12' on page 25 undefined on input line 324.
-
-
-LaTeX Warning: Citation `cedn' on page 25 undefined on input line 324.
-
-
-LaTeX Warning: Citation `m2fcn43' on page 25 undefined on input line 328.
-
-
-LaTeX Warning: Citation `vd2d3d' on page 25 undefined on input line 332.
-
 [25
 
-]
-
-LaTeX Warning: Citation `deep skeleton' on page 26 undefined on input line 346.
-
-
-<segmentation_and_boundary.png, id=434, 1016.79875pt x 370.38374pt>
+] <segmentation_and_boundary.png, id=653, 1016.79875pt x 370.38374pt>
 File: segmentation_and_boundary.png Graphic file (type png)
 
 <use segmentation_and_boundary.png>
-Package pdftex.def Info: segmentation_and_boundary.png used on input line 351.
+Package pdftex.def Info: segmentation_and_boundary.png used on input line 359.
 (pdftex.def)             Requested size: 426.79134pt x 155.46402pt.
+ [26] [27 <./segmentation_and_boundary.png>]
 
+LaTeX Warning: File `piriform prcurve.png' not found on input line 421.
 
-LaTeX Warning: Citation `vd2d3d' on page 26 undefined on input line 352.
-
-
-LaTeX Warning: Citation `isbi12' on page 26 undefined on input line 352.
-
-
-LaTeX Warning: Citation `watershed' on page 26 undefined on input line 352.
-
-
-LaTeX Warning: Citation `vd2d3d' on page 26 undefined on input line 352.
-
-
-LaTeX Warning: Citation `isbi12' on page 26 undefined on input line 352.
-
-
-LaTeX Warning: Citation `watershed' on page 26 undefined on input line 352.
-
-
-LaTeX Warning: Citation `vd2d3d' on page 26 undefined on input line 357.
-
-
-LaTeX Warning: Citation `m2fcn13' on page 26 undefined on input line 380.
-
-[26]
-
-LaTeX Warning: Citation `fcn' on page 27 undefined on input line 382.
-
-
-LaTeX Warning: Citation `hed' on page 27 undefined on input line 382.
-
-
-LaTeX Warning: Citation `deep skeleton' on page 27 undefined on input line 382.
-
-
-
-LaTeX Warning: Citation `imagenet' on page 27 undefined on input line 382.
-
-[27 <./segmentation_and_boundary.png>]
-
-LaTeX Warning: Citation `sgd' on page 28 undefined on input line 384.
-
-
-LaTeX Warning: Citation `vd2d3d' on page 28 undefined on input line 386.
-
-
-LaTeX Warning: Citation `vd2d3d' on page 28 undefined on input line 390.
-
-
-LaTeX Warning: Citation `vd2d3d' on page 28 undefined on input line 390.
-
-
-LaTeX Warning: Citation `n4' on page 28 undefined on input line 399.
-
-
-LaTeX Warning: Citation `vd2d3d' on page 28 undefined on input line 400.
-
-
-LaTeX Warning: Citation `vd2d3d' on page 28 undefined on input line 401.
-
-
-LaTeX Warning: File `piriform prcurve.png' not found on input line 413.
-
-<piriform prcurve.png, id=451, 1124.2pt x 843.15pt>
+<piriform prcurve.png, id=687, 1124.2pt x 843.15pt>
 File: piriform prcurve.png Graphic file (type png)
  <use piriform prcurve.png>
-Package pdftex.def Info: piriform prcurve.png used on input line 413.
+Package pdftex.def Info: piriform prcurve.png used on input line 421.
 (pdftex.def)             Requested size: 426.79134pt x 320.09155pt.
 
-
-LaTeX Warning: Citation `vd2d3d' on page 28 undefined on input line 414.
-
-
-LaTeX Warning: Citation `vd2d3d' on page 28 undefined on input line 414.
-
-[28]
-
-LaTeX Warning: Citation `vd2d3d' on page 29 undefined on input line 420.
-
-
-LaTeX Warning: Reference `isbi12 fscore' on page 29 undefined on input line 422
-.
-
-
-LaTeX Warning: Reference `isbi12 fscore' on page 29 undefined on input line 423
-.
-
-
-LaTeX Warning: Citation `ialic' on page 29 undefined on input line 423.
-
-
-LaTeX Warning: Citation `resnet' on page 29 undefined on input line 423.
-
-
-LaTeX Warning: Citation `resnet' on page 29 undefined on input line 423.
-
-[29] <voc_contour.png, id=461, 823.878pt x 395.076pt>
+[28] [29] <voc_contour.png, id=714, 823.878pt x 395.076pt>
 File: voc_contour.png Graphic file (type png)
- <use voc_contour.png>
-Package pdftex.def Info: voc_contour.png used on input line 431.
+
+<use voc_contour.png>
+Package pdftex.def Info: voc_contour.png used on input line 462.
 (pdftex.def)             Requested size: 426.79134pt x 204.65701pt.
-
-
-LaTeX Warning: Citation `cedn' on page 30 undefined on input line 432.
-
-
-LaTeX Warning: Citation `cedn' on page 30 undefined on input line 432.
-
-[30 <./piriform prcurve.png (PNG copy)>]
-
-LaTeX Warning: Citation `deep skeleton' on page 31 undefined on input line 438.
-
-
-
-LaTeX Warning: Citation `cedn' on page 31 undefined on input line 438.
-
-[31 <./voc_contour.png>]
-
-LaTeX Warning: Citation `deep skeleton' on page 32 undefined on input line 451.
-
-
-
-LaTeX Warning: Citation `cedn' on page 32 undefined on input line 454.
-
-
-LaTeX Warning: Citation `densecrf' on page 32 undefined on input line 454.
-
-
-LaTeX Warning: Citation `cedn' on page 32 undefined on input line 456.
-
-
-LaTeX Warning: Citation `cedn' on page 32 undefined on input line 456.
-
-
-LaTeX Warning: Citation `fcn' on page 32 undefined on input line 456.
-
-[32]
-
-LaTeX Warning: Citation `hed' on page 33 undefined on input line 458.
-
-
-LaTeX Warning: Citation `sgd' on page 33 undefined on input line 460.
-
-
-LaTeX Warning: Citation `cedn' on page 33 undefined on input line 460.
-
-
-LaTeX Warning: Citation `cedn' on page 33 undefined on input line 460.
-
-
-LaTeX Warning: Citation `mcg' on page 33 undefined on input line 462.
-
-
-LaTeX Warning: Citation `se' on page 33 undefined on input line 462.
-
-
-LaTeX Warning: Citation `hed' on page 33 undefined on input line 462.
-
-
-LaTeX Warning: Citation `cedn' on page 33 undefined on input line 462.
-
-
-LaTeX Warning: Citation `cedn' on page 33 undefined on input line 466.
-
-
-LaTeX Warning: Citation `cedn' on page 33 undefined on input line 466.
-
-
-LaTeX Warning: Citation `mcg' on page 33 undefined on input line 473.
-
-
-LaTeX Warning: Citation `mcg' on page 33 undefined on input line 474.
-
-
-LaTeX Warning: Citation `se' on page 33 undefined on input line 475.
-
-
-LaTeX Warning: Citation `hed' on page 33 undefined on input line 476.
-
-
-LaTeX Warning: Citation `cedn' on page 33 undefined on input line 478.
-
-<voc_prcurve.png, id=481, 1124.2pt x 843.15pt>
+ [30 <./piriform prcurve.png (PNG copy)>] [31 <./voc_contour.png>] [32] [33] <v
+oc_prcurve.png, id=768, 1124.2pt x 843.15pt>
 File: voc_prcurve.png Graphic file (type png)
- <use voc_prcurve.png>
-Package pdftex.def Info: voc_prcurve.png used on input line 488.
+
+<use voc_prcurve.png>
+Package pdftex.def Info: voc_prcurve.png used on input line 519.
 (pdftex.def)             Requested size: 426.79134pt x 320.09155pt.
-
-
-LaTeX Warning: Citation `cedn' on page 33 undefined on input line 489.
-
-
-LaTeX Warning: Citation `cedn' on page 33 undefined on input line 489.
-
-[33] [34] [35 <./voc_prcurve.png (PNG copy)>] [36
+ [34] [35 <./voc_prcurve.png (PNG copy)>] [36]
+<control_1.png, id=795, 794.97pt x 344.9688pt>
+File: control_1.png Graphic file (type png)
+ <use control_1.png>
+Package pdftex.def Info: control_1.png used on input line 572.
+(pdftex.def)             Requested size: 426.79134pt x 185.20656pt.
+ [37 <./control_1.png>] [38] [39] [40
 
 ]
 Chapter 5.
-[37] [38
+[41] [42
 
 
-] (./LUO_draft.bbl
-Underfull \hbox (badness 1735) in paragraph at lines 49--51
-[]\T1/ptm/m/n/12 Y. Kim, ``Con-vo-lu-tional neu-ral net-works for sen-tence cla
-s-si-fi-ca-tion,'' \T1/ptm/m/it/12 arXiv preprint
- []
+] (./LUO_draft.bbl [43
 
-[39
-
-] [40] [41])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 508.
- [42]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 508.
+] [44] [45] [46] [47] [48])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 635.
+ [49]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 635.
  (./LUO_draft.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 508.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 508.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 635.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 635.
 Package rerunfilecheck Info: File `LUO_draft.out' has not changed.
-(rerunfilecheck)             Checksum: C1FAAE1D11E15DA4EDCB225FF2C75829;2768.
-
-
-LaTeX Warning: There were undefined references.
+(rerunfilecheck)             Checksum: 3F7A09AD3221CFBD94847ACA64AE6FBA;3231.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 508.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 635.
  ) 
 Here is how much of TeX's memory you used:
- 12614 strings out of 492995
- 180342 string characters out of 6132704
- 282161 words of memory out of 5000000
- 15731 multiletter control sequences out of 15000+600000
+ 12623 strings out of 492995
+ 180815 string characters out of 6132704
+ 284720 words of memory out of 5000000
+ 15696 multiletter control sequences out of 15000+600000
  59292 words of font info for 85 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 43i,15n,45p,1723b,457s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 43i,15n,45p,1727b,460s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
 xlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
@@ -2134,10 +1556,10 @@ s/type1/urw/times/utmb8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/ur
 w/times/utmbi8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/urw/times/u
 tmr8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
 </usr/local/texlive/2017/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on LUO_draft.pdf (54 pages, 11679335 bytes).
+Output written on LUO_draft.pdf (61 pages, 15707193 bytes).
 PDF statistics:
- 623 PDF objects out of 1000 (max. 8388607)
- 534 compressed objects within 6 object streams
- 142 named destinations out of 1000 (max. 500000)
- 350 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 940 PDF objects out of 1000 (max. 8388607)
+ 829 compressed objects within 9 object streams
+ 184 named destinations out of 1000 (max. 500000)
+ 392 words of extra memory for PDF output out of 10000 (max. 10000000)
 

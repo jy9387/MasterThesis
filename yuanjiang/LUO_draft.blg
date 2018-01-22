@@ -1,0 +1,58 @@
+This is BibTeX, Version 0.99d (TeX Live 2017)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: LUO_draft.aux
+The style file: IEEEtran.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: LUOreference.bib
+-- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
+-- http://www.michaelshell.org/tex/ieeetran/bibtex/
+-- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
+Warning--empty journal in Sobel2014
+
+Done.
+You've used 52 entries,
+            4087 wiz_defined-function locations,
+            1119 strings with 15979 characters,
+and the built_in function-call counts, 45163 in all, are:
+= -- 3456
+> -- 1228
+< -- 404
++ -- 680
+- -- 209
+* -- 2120
+:= -- 6196
+add.period$ -- 104
+call.type$ -- 52
+change.case$ -- 52
+chr.to.int$ -- 1032
+cite$ -- 53
+duplicate$ -- 3133
+empty$ -- 3787
+format.name$ -- 257
+if$ -- 10736
+int.to.chr$ -- 0
+int.to.str$ -- 52
+missing$ -- 545
+newline$ -- 179
+num.names$ -- 52
+pop$ -- 1385
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 2
+skip$ -- 3521
+stack$ -- 0
+substring$ -- 2470
+swap$ -- 2570
+text.length$ -- 60
+text.prefix$ -- 0
+top$ -- 5
+type$ -- 52
+warning$ -- 1
+while$ -- 218
+width$ -- 54
+write$ -- 497
+(There was 1 warning)

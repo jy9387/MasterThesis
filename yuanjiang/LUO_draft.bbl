@@ -21,139 +21,278 @@
 \providecommand{\BIBdecl}{\relax}
 \BIBdecl
 
-\bibitem{vapnik2013nature}
-V.~Vapnik, \emph{The nature of statistical learning theory}.\hskip 1em plus
-  0.5em minus 0.4em\relax Springer Science \& Business Media, 2013.
+\bibitem{Yang2016}
+J.~Yang, B.~Price, S.~Cohen, and M.~Y. H.~Lee, ``Object contour detection with
+  a fully convolutional encoder-decoder network,'' in \emph{Proc. of The IEEE
+  Conference on Computer Vision and Pattern Recognition}, 2016, pp. 193--202.
 
-\bibitem{brucher2002document}
-H.~Br{\"u}cher, G.~Knolmayer, and M.-A. Mittermayer, \emph{Document
-  classification methods for organizing explicit knowledge}.\hskip 1em plus
-  0.5em minus 0.4em\relax Institut f{\"u}r Wirtschaftsinformatik der
-  Universit{\"a}t Bern, 2002.
+\bibitem{Zitnick2014}
+C.~L. Zitnick and P.~Doll\'ar, ``Edge boxes: Locating object proposals from
+  edges,'' in \emph{Proc. of European Conference on Computer Vision}, 2014, pp.
+  391--405.
 
-\bibitem{kwon2003text}
-O.-W. Kwon and J.-H. Lee, ``Text categorization based on k-nearest neighbor
-  approach for web site classification,'' \emph{Information Processing \&
-  Management}, vol.~39, no.~1, pp. 25--44, 2003.
+\bibitem{Lee2015}
+K.~Lee, A.~Zlateski, A.~Vishwanathan, and H.~S. Seung, ``Recursive training of
+  2d-3d convolutional networks for neuronal boundary detection,'' in
+  \emph{Proc. of The International Conference on Neural Information Processing
+  Systems}, 2015, pp. 3573--3581.
 
-\bibitem{le2014distributed}
-Q.~V. Le and T.~Mikolov, ``Distributed representations of sentences and
-  documents.'' in \emph{ICML}, vol.~14, 2014, pp. 1188--1196.
+\bibitem{Quan2016}
+T.~M. Quan, D.~G.~C. Hildebrand, and W.~Jeong, ``Fusionnet: A deep fully
+  residual convolutional neural network for image segmentation in
+  connectomics,'' \emph{CoRR}, vol. abs/1612.05360, 2016.
 
-\bibitem{zhang2015character}
-X.~Zhang, J.~Zhao, and Y.~LeCun, ``Character-level convolutional networks for
-  text classification,'' in \emph{Advances in Neural Information Processing
-  Systems}, 2015, pp. 649--657.
+\bibitem{Ronneberger2015}
+O.~Ronneberger, P.~Fischer, and T.~Brox, ``U-net: Convolutional networks for
+  biomedical image segmentation,'' in \emph{Proc. of The International
+  Conference on Medical Image Computing and Computer-Assisted Intervention},
+  2015, pp. 234--241.
 
-\bibitem{kim2014convolutional}
-Y.~Kim, ``Convolutional neural networks for sentence classification,''
-  \emph{arXiv preprint arXiv:1408.5882}, 2014.
+\bibitem{Canny1986}
+J.~Canny, ``A computational approach to edge detection,'' \emph{IEEE
+  Transactions on Pattern Analysis and Machine Intelligence}, vol.~8, pp.
+  679--698, 1986.
 
-\bibitem{johnson2015semi}
-R.~Johnson and T.~Zhang, ``Semi-supervised convolutional neural networks for
-  text categorization via region embedding,'' in \emph{Advances in neural
-  information processing systems}, 2015, pp. 919--927.
+\bibitem{Sobel2014}
+I.~Sobel, ``An isotropic 3 3 image gradient operator,'' 02 2014.
 
-\bibitem{mikolov2010recurrent}
-T.~Mikolov, M.~Karafi{\'a}t, L.~Burget, J.~Cernock{\`y}, and S.~Khudanpur,
-  ``Recurrent neural network based language model.'' in \emph{Interspeech},
-  vol.~2, 2010, p.~3.
+\bibitem{Dollar2013}
+P.~Dollar and C.~L. Zitnick, ``Structured forests for fast edge detection,'' in
+  \emph{Proc. of The IEEE International Conference on Computer Vision}, 2013,
+  pp. 1841--1848.
 
-\bibitem{xiao2016chinese}
-Z.~Xiao and P.~Liang, ``Chinese sentiment analysis using bidirectional lstm
-  with word embedding,'' in \emph{International Conference on Cloud Computing
-  and Security}.\hskip 1em plus 0.5em minus 0.4em\relax Springer, 2016, pp.
-  601--610.
+\bibitem{Shen2015}
+W.~Shen, X.~Wang, Y.~Wang, X.~Bai, and Z.~Zhang, ``Deepcontour: A deep
+  convolutional feature learned by positive-sharing loss for contour
+  detection,'' in \emph{Proc. of The IEEE Conference on Computer Vision and
+  Pattern Recognition}, 2015, pp. 3982--3991.
 
-\bibitem{tang2015document}
-D.~Tang, B.~Qin, and T.~Liu, ``Document modeling with gated recurrent neural
-  network for sentiment classification,'' in \emph{Proceedings of the 2015
-  Conference on Empirical Methods in Natural Language Processing}, 2015, pp.
-  1422--1432.
+\bibitem{Xie2015}
+S.~Xie and Z.~Tu, ``Holistically-nested edge detection,'' in \emph{Proc. of The
+  IEEE International Conference on Computer Vision}, 2015, pp. 1395--1403.
 
-\bibitem{lai2015recurrent}
-S.~Lai, L.~Xu, K.~Liu, and J.~Zhao, ``Recurrent convolutional neural networks
-  for text classification.'' in \emph{AAAI}, 2015, pp. 2267--2273.
+\bibitem{Long2015}
+J.~Long, E.~Shelhamer, and T.~Darrell, ``Fully convolutional networks for
+  semantic segmentation,'' in \emph{Proc. of The IEEE Conference on Computer
+  Vision and Pattern Recognition}, 2015, pp. 3431--3440.
 
-\bibitem{wang2016learning}
-P.~Wang, Y.~Qian, F.~K. Soong, L.~He, and H.~Zhao, ``Learning distributed word
-  representations for bidirectional lstm recurrent neural network,'' in
-  \emph{Proc. of ICASSP}, 2016.
+\bibitem{Lichtman2011}
+J.~W. Lichtman and W.~Denk, ``The big and the small: Challenges of imaging the
+  brains circuits,'' \emph{Science}, vol. 334, pp. 618--623, 2011.
 
-\bibitem{wang2016semantic}
-P.~Wang, B.~Xu, J.~Xu, G.~Tian, C.-L. Liu, and H.~Hao, ``Semantic expansion
-  using word embedding clustering and convolutional neural network for
-  improving short text classification,'' \emph{Neurocomputing}, vol. 174, pp.
-  806--814, 2016.
+\bibitem{Ciresan2012}
+D.~Ciresan, A.~Giusti, L.~M. Gambardella, and J.~Schmidhuber, ``Deep neural
+  networks segment neuronal membranes in electron microscopy images,'' in
+  \emph{Proc. of The International Conference on Neural Information Processing
+  Systems}, 2012, pp. 2852--2860.
 
-\bibitem{liu2016recurrent}
-P.~Liu, X.~Qiu, and X.~Huang, ``Recurrent neural network for text
-  classification with multi-task learning,'' \emph{arXiv preprint
-  arXiv:1605.05101}, 2016.
+\bibitem{Zlateski2015}
+A.~Zlateski and H.~S. Seung, ``Fusionnet: A deep fully residual convolutional
+  neural network for image segmentation in connectomics,'' \emph{CoRR}, vol.
+  abs/1505.00249, 2015.
 
-\bibitem{graves2005framewise}
-A.~Graves and J.~Schmidhuber, ``Framewise phoneme classification with
-  bidirectional lstm and other neural network architectures,'' \emph{Neural
-  Networks}, vol.~18, no.~5, pp. 602--610, 2005.
+\bibitem{Arbelaez2011}
+P.~Arbel\'aez, M.~Maire, C.~Fowlkes, and J.~Malik, ``Contour detection and
+  hierarchical image segmentation,'' \emph{IEEE Transactions on Pattern
+  Analysis and Machine Intelligence}, vol.~33, pp. 898--916, 2011.
 
-\bibitem{nair2010rectified}
-V.~Nair and G.~E. Hinton, ``Rectified linear units improve restricted boltzmann
-  machines,'' in \emph{Proceedings of the 27th International Conference on
-  Machine Learning (ICML-10)}, 2010, pp. 807--814.
+\bibitem{Pinheiro2015}
+P.~O. Pinheiro, R.~Collobert, and P.~Dollar, ``Learning to segment object
+  candidates,'' in \emph{Proc. of The IEEE Conference on Computer Vision and
+  Pattern Recognition}, 2015.
 
-\bibitem{he2015deep}
-K.~He, X.~Zhang, S.~Ren, and J.~Sun, ``Deep residual learning for image
-  recognition,'' \emph{arXiv preprint arXiv:1512.03385}, 2015.
+\bibitem{Everingham2010}
+M.~Everingham, L.~J.~V. Gool, C.~K.~I. Williams, J.~M. Winn, and A.~Zisserman,
+  ``The pascal visual object classes (voc) challenge,'' \emph{International
+  Journal of Computer Vision}, vol.~88, pp. 303--338, 2010.
 
-\bibitem{graves2013speech}
-A.~Graves, A.-r. Mohamed, and G.~Hinton, ``Speech recognition with deep
-  recurrent neural networks,'' in \emph{2013 IEEE international conference on
-  acoustics, speech and signal processing}.\hskip 1em plus 0.5em minus
-  0.4em\relax IEEE, 2013, pp. 6645--6649.
+\bibitem{Girshick2015}
+R.~Girshick, ``Fast r-cnn,'' in \emph{Proc. of The IEEE International
+  Conference on Computer Vision}, 2015, pp. 1440--1448.
 
-\bibitem{chung2015gated}
-J.~Chung, C.~G{\"u}l{\c{c}}ehre, K.~Cho, and Y.~Bengio, ``Gated feedback
-  recurrent neural networks,'' \emph{CoRR, abs/1502.02367}, 2015.
+\bibitem{Wang2014}
+X.~Wang, B.~Feng, X.~Bai, W.~Liu, and L.~J. Latecki, ``Bag of contour fragments
+  for robust shape classification,'' \emph{Pattern Recognition}, vol.~47, pp.
+  2116--2125, 2014.
 
-\bibitem{kingma2014adam}
-D.~Kingma and J.~Ba, ``Adam: A method for stochastic optimization,''
-  \emph{arXiv preprint arXiv:1412.6980}, 2014.
+\bibitem{Shen2014CCPR}
+W.~Shen, X.~Wang, C.~Yao, and X.~Bai, ``Shape recognition by combining contour
+  and skeleton into a mid-level representation,'' in \emph{Proc. of Chinese
+  Conference on Pattern Recognition}, 2014, pp. 391--400.
 
-\bibitem{socher2013recursive}
-R.~Socher, A.~Perelygin, J.~Y. Wu, J.~Chuang, C.~D. Manning, A.~Y. Ng, and
-  C.~Potts, ``Recursive deep models for semantic compositionality over a
-  sentiment treebank,'' in \emph{Proceedings of the conference on empirical
-  methods in natural language processing (EMNLP)}, vol. 1631.\hskip 1em plus
-  0.5em minus 0.4em\relax Citeseer, 2013, p. 1642.
+\bibitem{Shen2016PRL}
+W.~Shen, Y.~Jiang, W.~Gao, D.~Zeng, and Z.~Zhang, ``Shape recognition by bag of
+  skeleton-associated contour parts,'' \emph{Pattern Recognition Letters},
+  vol.~83, pp. 321--329, 2016.
 
-\bibitem{li2002learning}
-X.~Li and D.~Roth, ``Learning question classifiers,'' in \emph{Proceedings of
-  the 19th international conference on Computational linguistics-Volume
-  1}.\hskip 1em plus 0.5em minus 0.4em\relax Association for Computational
-  Linguistics, 2002, pp. 1--7.
+\bibitem{Malik2001}
+J.~Malik, S.~Belongie, and J.~S. T.~Leung, ``Contour and texture analysis for
+  image segmentation,'' \emph{International Journal of Computer Vision},
+  vol.~43, pp. 7--27, 2001.
 
-\bibitem{kalchbrenner2014convolutional}
-N.~Kalchbrenner, E.~Grefenstette, and P.~Blunsom, ``A convolutional neural
-  network for modelling sentences,'' \emph{arXiv preprint arXiv:1404.2188},
-  2014.
+\bibitem{Krahenbuhl2015}
+P.~Kr\"ahenb\"uhl and V.~Koltun, ``Learning to propose objects,'' in
+  \emph{Proc. of The International Conference on Neural Information Processing
+  Systems}, 2015, pp. 1574--1582.
 
-\bibitem{irsoy2014deep}
-O.~Irsoy and C.~Cardie, ``Deep recursive neural networks for compositionality
-  in language,'' in \emph{Advances in Neural Information Processing Systems},
-  2014, pp. 2096--2104.
+\bibitem{Krizhevsky2012}
+A.~Krizhevsky, I.~Sutskever, and G.~E. Hinton, ``Imagenet classification with
+  deep convolutional neural networks,'' in \emph{Proc. of The International
+  Conference on Neural Information Processing Systems}, 2012, pp. 1106--1114.
 
-\bibitem{tai2015improved}
-K.~S. Tai, R.~Socher, and C.~D. Manning, ``Improved semantic representations
-  from tree-structured long short-term memory networks,'' \emph{arXiv preprint
-  arXiv:1503.00075}, 2015.
+\bibitem{Simonyan2014}
+K.~Simonyan and A.~Zisserman, ``Very deep convolutional networks for
+  large-scale image recognition,'' \emph{CoRR}, vol. abs/1409.1556, 2014.
 
-\bibitem{zhou2015c}
-C.~Zhou, C.~Sun, Z.~Liu, and F.~Lau, ``A c-lstm neural network for text
-  classification,'' \emph{arXiv preprint arXiv:1511.08630}, 2015.
+\bibitem{Szegedy2015}
+C.~Szegedy, W.~Liu, Y.~Jia, P.~Sermanet, S.~Reed, D.~Anguelov, D.~Erhan,
+  V.~Vanhoucke, and A.~Rabinovich, ``Going deeper with convolutions,'' in
+  \emph{Proc. of The IEEE Conference on Computer Vision and Pattern
+  Recognition}, 2015, pp. 1--9.
 
-\bibitem{hinton2012improving}
-G.~E. Hinton, N.~Srivastava, A.~Krizhevsky, I.~Sutskever, and R.~R.
-  Salakhutdinov, ``Improving neural networks by preventing co-adaptation of
-  feature detectors,'' \emph{arXiv preprint arXiv:1207.0580}, 2012.
+\bibitem{He2016}
+X.~Z. K.~He and J.~S. S.~Ren, ``Deep residual learning for image recognition,''
+  in \emph{Proc. of The IEEE Conference on Computer Vision and Pattern
+  Recognition}, 2016, pp. 770--778.
+
+\bibitem{Girshick2014}
+R.~Girshick, J.~Donahue, T.~Darrell, and J.~Malik, ``Rich feature hierarchies
+  for accurate object detection and semantic segmentation,'' in \emph{Proc. of
+  The IEEE Conference on Computer Vision and Pattern Recognition}, 2014, pp.
+  580--587.
+
+\bibitem{Ren2015}
+S.~Ren, K.~He, R.~Girshick, and J.~Sun, ``Faster r-cnn: Towards real-time
+  object detection with region proposal networks,'' in \emph{Proc. of The
+  International Conference on Neural Information Processing Systems}, 2015, pp.
+  91--99.
+
+\bibitem{Kivinen2014}
+J.~Kivinen, C.~Williams, and N.~Heess, ``Visual boundary prediction: A deep
+  neural prediction network and quality dissection,'' in \emph{Proc. of The
+  International Conference on Artificial Intelligence and Statistics}, 2014,
+  pp. 512--521.
+
+\bibitem{Ganin2014}
+W.~Shen, X.~Wang, Y.~Wang, X.~Bai, and Z.~Zhang, ``N\^{4}-fields: Neural
+  network nearest neighbor fields for image transforms,'' in \emph{Proc. of
+  Asian Conference on Computer Vision}, 2014, pp. 536--551.
+
+\bibitem{Lim2013}
+J.~J. Lim, C.~L. Zitnick, and P.~Dollar, ``Sketch tokens: A learned mid-level
+  representation for contour and object detection,'' in \emph{Proc. of The IEEE
+  Conference on Computer Vision and Pattern Recognition}, 2013, pp. 3158--3165.
+
+\bibitem{Helmstaedter2013}
+M.~Helmstaedter, ``Cellular-resolution connectomics: Challenges of dense neural
+  circuit reconstruction,'' \emph{Nature methods}, vol.~10, pp. 501--507, 2013.
+
+\bibitem{Sporns2005}
+O.~Sporns, G.~Tononi, and R.~K\"otter, ``The human connectome: A structural
+  description of the human brain,'' \emph{PLoS Comput Biol}, vol.~1, p. e42,
+  2005.
+
+\bibitem{Laptev2012}
+D.~Laptev, A.~Vezhnevets, S.~Dwivedi, and J.~M. Buhmann, ``Anisotropic sstem
+  image segmentation using dense correspondence across sections,'' in
+  \emph{Proc. of The International Conference on Medical Image Computing and
+  Computer-Assisted Intervention}, 2012, pp. 323--330.
+
+\bibitem{Kaynig2010}
+V.~Kaynig, T.~J. Fuchs, and J.~M. Buhmann, ``Geometrical consistent 3d tracing
+  of neuronal processes in sstem data,'' in \emph{Proc. of The International
+  Conference on Medical Image Computing and Computer-Assisted Intervention},
+  2010, pp. 209--216.
+
+\bibitem{Kumar2010}
+R.~Kumar, A.~Vazquez-Reina, and H.~Pfister, ``Radon-like features and their
+  application to connectomics,'' in \emph{Proc. of The IEEE Computer Society
+  Conference on Computer Vision and Pattern Recognition Workshops}, 2010, pp.
+  186--193.
+
+\bibitem{Seyedhosseini2011}
+M.~Seyedhosseini, R.~Kumar, E.~Jurrus, R.~Giuly, M.~Ellisman, H.~Pfister, and
+  T.~Tasdizen, ``Detection of neuron membranes in electron microscopy images
+  using multi-scale context and radon-like features.'' in \emph{Proc. of The
+  International Conference on Medical Image Computing and Computer-Assisted
+  Intervention}, 2011, pp. 670--677.
+
+\bibitem{Najman1996}
+L.~Najman and M.~Schmitt, ``Geodesic saliency of watershed contours and
+  hierarchical segmentation,'' \emph{IEEE Transactions on Pattern Analysis and
+  Machine Intelligence}, vol.~18, pp. 1163--1173, 1996.
+
+\bibitem{Uzunbas2014}
+M.~G. Uzunbas, C.~Chen, and D.~N. Metaxas, ``Optree: A learning-based adaptive
+  watershed algorithm for neuron segmentation,'' in \emph{Proc. of The
+  International Conference on Medical Image Computing and Computer-Assisted
+  Intervention}, 2014, pp. 97--105.
+
+\bibitem{Boykov2001}
+Y.~Boykov and M.~P. Jolly, ``Interactive graph cuts for optimal boundary and
+  region segmentation of objects in n-d images,'' in \emph{Proc. of The IEEE
+  International Conference on Computer Vision}, 2001, pp. 105--112.
+
+\bibitem{Fakhry2017}
+A.~Fakhry, T.~Zeng, and S.~Ji, ``Residual deconvolutional networks for brain
+  electron microscopy image segmentation,'' \emph{IEEE Transactions on Medical
+  Imaging}, vol.~36, pp. 447--456, 2017.
+
+\bibitem{Carreras2015}
+I.~Arganda-Carreras, S.~C. Turaga, D.~R. Berger, D.~Ciresan, A.~Giusti, L.~M.
+  Gambardella, J.~Schmidhuber, D.~Laptev, S.~Dwivedi, J.~M. Buhmann, T.~Liu,
+  M.~Seyedhosseini, T.~Tasdizen, L.~Kamentsky, R.~Burget, V.~Uher, X.~Tan,
+  C.~Sun, T.~D. Pham, E.~Bas, M.~G. Uzunbas, A.~Cardona, J.~Schindelin, and
+  H.~S. Seung, ``Crowdsourcing the creation of image segmentation algorithms
+  for connectomics,'' \emph{Frontiers in Neuroanatomy}, vol.~9, p. 142, 2015.
+
+\bibitem{Shen2016CVPR}
+W.~Shen, K.~Zhao, Y.~Jiang, Y.~Wang, Z.~Zhang, and X.~Bai, ``Object skeleton
+  extraction in natural images by fusing scale-associated deep side outputs,''
+  in \emph{Proc. of The IEEE Conference on Computer Vision and Pattern
+  Recognition}, 2016, pp. 222--230.
+
+\bibitem{Deng2009}
+J.~Deng, W.~Dong, R.~Socher, L.~Li, K.~Li, and F.~Li, ``Imagenet: a large-scale
+  hierarchical image database,'' in \emph{Proc. of The IEEE Conference on
+  Computer Vision and Pattern Recognition}, 2009, pp. 248--255.
+
+\bibitem{Beier2016}
+T.~Beier, B.~Andres, U.~K\"othe, and F.~A. Hamprecht, ``An efficient fusion
+  move algorithm for the minimum cost lifted multicut problem,'' in \emph{Proc.
+  of European Conference on Computer Vision}, 2016, pp. 715--730.
+
+\bibitem{Chen2016}
+H.~Chen, X.~Qi, J.~Cheng, and P.~Heng, ``Deep contextual networks for neuronal
+  structure segmentation,'' in \emph{Proc. of The AAAI Conference on Artificial
+  Intelligence}, 2016.
+
+\bibitem{Drozdzal2017}
+M.~Drozdzal, G.~Chartrand, E.~Vorontsov, L.~Di-Jorio, A.~Tang, A.~Romero,
+  Y.~Bengio, C.~Pal, and S.~Kadoury, ``Learning normalized inputs for iterative
+  estimation in medical image segmentation,'' \emph{CoRR}, vol. abs/1702.05174,
+  2017.
+
+\bibitem{Shen2017TIP}
+W.~Shen, K.~Zhao, Y.~Jiang, Y.~Wang, X.~Bai, and A.~Yuille, ``Deepskeleton:
+  Learning multi-task scale-associated deep side outputs for object skeleton
+  extraction in natural images,'' \emph{IEEE Transactions on Image Processing},
+  vol.~26, pp. 5298--5311, 2017.
+
+\bibitem{Krahenbuhl2011}
+P.~Kr\"ahenb\"uhl, A.~Giusti, L.~M. Gambardella, and J.~Schmidhuber,
+  ``Efficient inference in fully connected crfs with gaussian edge
+  potentials,'' in \emph{Proc. of The International Conference on Neural
+  Information Processing Systems}, 2011, pp. 109--117.
+
+\bibitem{Arbelaez2014}
+P.~Arbel\'aez, J.~Pont-Tuset, J.~Barron, F.~Marques, and J.~Malik, ``Multiscale
+  combinatorial grouping,'' in \emph{Proc. of The IEEE Conference on Computer
+  Vision and Pattern Recognition}, 2014.
+
+\bibitem{Liu2017}
+Y.~Liu, M.~Cheng, X.~Hu, K.~Wang, and X.~Bai, ``Richer convolutional features
+  for edge detection,'' in \emph{Proc. of The IEEE Conference on Computer
+  Vision and Pattern Recognition}, 2017.
 
 \end{thebibliography}
